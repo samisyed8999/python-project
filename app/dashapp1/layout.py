@@ -54,13 +54,12 @@ df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
 df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
 df3 = df_balance.loc[ticker]
 
-image_filename = 'stock-icon.png'
-encoded_image = base64.b64encode(open(image_filename, 'rb').read())
+
 
 layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
-        html.Img(src='data:image/png;base64,{}'.format(encoded_image))
+        html.Img(src='assets/stock-image.png/')
     ], className="banner"),
 
     html.Div([
