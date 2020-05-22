@@ -6,6 +6,7 @@ import simfin as sf
 from simfin.names import *
 import dash_table
 from dash.dependencies import Output, Input, State
+import os 
 
 tabtitle='Financial Statements'
 sf.set_data_dir('~/simfin_data/')
@@ -57,7 +58,7 @@ df3 = df_balance.loc[ticker]
 layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
-        html.Img(src=dashapp1.get_asset_url('stock-icon.png'))
+        html.Img(src= os.get_asset_url('stock-icon.png'))
     ], className="banner"),
 
     html.Div([
