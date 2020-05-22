@@ -58,7 +58,7 @@ df3 = df_balance.loc[ticker]
 layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
-        html.Img(src='https://drive.google.com/open?id=1okSytw8Z0BeF-dscHC75HOfKxSURRrjG')
+        html.Img(src='stock-icon (1).png')
     ], className="banner"),
 
     html.Div([
