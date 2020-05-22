@@ -58,10 +58,9 @@ df3 = df_balance.loc[ticker]
 
 
 dashapp1 = dash.Dash(__name__,
-                         server=app,
                          url_base_pathname='/dashboard/',
-                         assets_folder=get_root_path(__name__) + '/dashapp1/assets/',
-                         meta_tags=[meta_viewport])
+                         assets_folder=get_root_path(__name__) + '/dashapp1/assets/')
+                         
 
 dashapp1.layout = html.Div([
     html.Div([
