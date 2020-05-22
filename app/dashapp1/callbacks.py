@@ -1,18 +1,59 @@
-from datetime import datetime as dt
-
-import pandas_datareader as pdr
-from dash.dependencies import Input
-from dash.dependencies import Output
-
+import dash_table
+from dash.dependencies import Output, Input, State
 
 def register_callbacks(dashapp):
-    @dashapp.callback(Output('my-graph', 'figure'), [Input('my-dropdown', 'value')])
-    def update_graph(selected_dropdown_value):
-        df = pdr.get_data_yahoo(selected_dropdown_value, start=dt(2017, 1, 1), end=dt.now())
-        return {
-            'data': [{
-                'x': df.index,
-                'y': df.Close
-            }],
-            'layout': {'margin': {'l': 40, 'r': 0, 't': 20, 'b': 30}}
-        }
+    @dashapp.callback(
+    Output('table', 'data'),
+    [Input("submit-button", "n_clicks")],
+    [State("stock-input", "value")])
+    def update_data(n_click, input_value):
+        df1 = df_income.loc[input_value]
+        data = df1.to_dict("records")
+        return data
+
+    @dashapp.callback(
+    Output('table', 'columns'),
+    [Input("submit-button", "n_clicks")],
+    [State("stock-input", "value")])
+    def update_columns(n_click, input_value):
+            df1 = df_income.loc[input_value]
+            columns =[{"name": i, "id": i} for i in df1.columns]
+            return columns
+
+
+    @dashapp.callback(
+    Output('table2', 'data'),
+    [Input("submit-button", "n_clicks")],
+    [State("stock-input", "value")])
+    def update_data(n_click, input_value):
+        df2 = df_signals.loc[input_value]
+        data = df2.to_dict("records")
+        return data
+
+    @dashapp.callback(
+    Output('table2', 'columns'),
+    [Input("submit-button", "n_clicks")],
+    [State("stock-input", "value")])
+    def update_columns(n_click, input_value):
+            df2 = df_signals.loc[input_value]
+            columns =[{"name": i, "id": i} for i in df2.columns]
+            return columns
+
+
+    @dashapp.callback(
+    Output('table3', 'data'),
+    [Input("submit-button", "n_clicks")],
+    [State("stock-input", "value")])
+    def update_data(n_click, input_value):
+        df3 = df_balance.loc[input_value]
+        data = df3.to_dict("records")
+        return data
+
+    @dashapp.callback(
+    Output('table3', 'columns'),
+    [Input("submit-button", "n_clicks")],
+    [State("stock-input", "value")])
+    def update_columns(n_click, input_value):
+            df3 = df_balance.loc[input_value]
+            columns =[{"name": i, "id": i} for i in df3.columns]
+            return columns
