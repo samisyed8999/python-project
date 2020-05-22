@@ -54,11 +54,16 @@ df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, dec
 df3 = df_balance.loc[ticker]
 
 
+dashapp1 = dash.Dash(__name__,
+                         server=app,
+                         url_base_pathname='/dashboard/',
+                         assets_folder=get_root_path(__name__) + '/dashapp1/assets/',
+                         meta_tags=[meta_viewport])
 
-layout = html.Div([
+dashapp1.layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
-        html.Img(src='assets/stock-image.png/')
+        html.Img(src= dashapp1.get_asset_url('stock-image.png'))
     ], className="banner"),
 
     html.Div([
