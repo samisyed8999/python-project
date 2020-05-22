@@ -6,9 +6,6 @@ import simfin as sf
 from simfin.names import *
 import dash_table
 from dash.dependencies import Output, Input, State
-from flask import Flask
-from flask.helpers import get_root_path
-from flask_login import login_required
 
 tabtitle='Financial Statements'
 sf.set_data_dir('~/simfin_data/')
@@ -57,15 +54,11 @@ df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, dec
 df3 = df_balance.loc[ticker]
 
 
-dashapp1 = dash.Dash(__name__,
-                         url_base_pathname='/dashboard/',
-                         assets_folder=get_root_path(__name__) + '/dashapp1/assets/')
                          
-
-dashapp1.layout = html.Div([
+layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
-        html.Img(src= dashapp1.get_asset_url('stock-image.png'))
+        html.Img(src= asset_url('stock-image.png'))
     ], className="banner"),
 
     html.Div([
