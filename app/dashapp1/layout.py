@@ -6,7 +6,6 @@ import simfin as sf
 from simfin.names import *
 import dash_table
 from dash.dependencies import Output, Input, State
-import base64
 
 tabtitle='Financial Statements'
 sf.set_data_dir('~/simfin_data/')
