@@ -33,7 +33,7 @@ def register_dashapps(app):
     with app.app_context():
         dashapp1.title = 'Financial Statements'
         #dashapp1.layout = layout
-        dashapp1.layout = dashapp1.layout
+        #dashapp1.layout = dashapp1.layout
         register_callbacks(dashapp1)
 
     _protect_dashviews(dashapp1)
