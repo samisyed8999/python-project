@@ -85,7 +85,7 @@ def register_dashapps(app):
     dashapp1.layout = html.Div([
         html.Div([
             html.H2('Fundemental Analysis'),
-            html.Img(src="/assets/stock-icon.png")
+            html.Img(src= dashapp1.get_asset_url('stock-icon.png')) 
         ], className="banner"),
 
         html.Div([
