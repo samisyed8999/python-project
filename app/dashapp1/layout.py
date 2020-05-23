@@ -54,15 +54,13 @@ df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
 df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
 df3 = df_balance.loc[ticker]
 
-image_filename = 'stock-icon.png' # replace with your own image
-encoded_image = base64.b64encode(open(image_filename, 'rb').read())
-#html.Img(src='data:image/png;base64,{}'.format(encoded_image))
+
                          
 layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
       #/app/dashapp1/assets/stock-icon.png
-        html.Img(src='data:image/png;base64,{}'.format(encoded_image))
+        html.Img(src='image-stock.png')
     ], className="banner"),
 
     html.Div([
