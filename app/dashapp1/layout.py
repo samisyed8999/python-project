@@ -62,7 +62,7 @@ layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
       #/app/dashapp1/assets/stock-icon.png
-        html.Img(src="/app/dashapp1/assets/stock-icon.png")
+        html.Img(src="dash_on_flask/app/dashapp1/assets/stock-icon.png")
     ], className="banner"),
 
     html.Div([
