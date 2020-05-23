@@ -6,6 +6,7 @@ import simfin as sf
 from simfin.names import *
 import dash_table
 from dash.dependencies import Output, Input, State
+#import base64
 
 tabtitle='Financial Statements'
 sf.set_data_dir('~/simfin_data/')
@@ -53,7 +54,8 @@ df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
 df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
 df3 = df_balance.loc[ticker]
 
-
+#image_filename = 'stock-icon.png' # replace with your own image
+#encoded_image = base64.b64encode(open(image_filename, 'rb').read())
                          
 layout = html.Div([
     html.Div([
