@@ -81,7 +81,58 @@ def register_dashapps():
                          url_base_pathname='/dashboard/',
                          assets_folder=get_root_path(__name__) + '/dashapp1/assets/',
                          meta_tags=[meta_viewport])
+    
+    dashapp1.layout = html.Div([
+    html.Div([
+        html.H2('Fundemental Analysis'),
+      #/app/dashapp1/assets/stock-icon.png
+        html.Img(src='image-stock.png')
+    ], className="banner"),
 
+    html.Div([
+        dcc.Input(id="stock-input", value=ticker, type="text"),
+        html.Button(id="submit-button", n_clicks=0, children="Submit", className="ticker2")
+    ], className="ticker1"),
+
+
+    dcc.Tabs(id="tabs", value='Tab1', className='custom-tabs-container', children=[
+        dcc.Tab(label='Income Statement', id='tab1', value= 'Tab1', selected_className='custom-tab--selected', children=[
+
+            html.Div(
+                html.H3('Income statement (m)')
+            ),
+            dash_table.DataTable(
+                id='table',
+                columns=[{"name": i, "id": i} for i in df1.columns],
+                data=df1.to_dict('records'),
+            ),
+
+            html.Div(
+                html.H3('Key Ratios %')
+            ),
+            dash_table.DataTable(
+                id='table2',
+                columns=[{"name": i, "id": i} for i in df2.columns],
+                data=df2.to_dict('records'),
+            )
+
+        ]),
+        dcc.Tab(label='Balance Sheet', id='tab2', value= 'Tab2', selected_className='custom-tab--selected' ,children=[
+
+            html.Div(
+                html.H3('Balance Sheet (m)')
+            ),
+            dash_table.DataTable(
+                id='table3',
+                columns=[{"name": i, "id": i} for i in df3.columns],
+                data=df3.to_dict('records'),
+            ),
+        ]),
+        dcc.Tab(label='Cash Flow Statement', id='tab3', value= 'Tab3',selected_className='custom-tab--selected',  children=["yo"]),
+        dcc.Tab(label='Intrinsic Value estimations', id='tab4', value= 'Tab4', selected_className='custom-tab--selected',  children=["yo"]),
+
+            ])
+        ])
     #with app.app_context():
         #dashapp1.title = 'Financial Statements'
         #dashapp1.layout = layout
