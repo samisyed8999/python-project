@@ -1,8 +1,8 @@
 import dash_table
 from dash.dependencies import Output, Input, State
 
-def register_callbacks(dashapp):
-    @dashapp.callback(
+def register_callbacks(dashapp1):
+    @dashapp1.callback(
     Output('table', 'data'),
     [Input("submit-button", "n_clicks")],
     [State("stock-input", "value")])
@@ -11,7 +11,7 @@ def register_callbacks(dashapp):
         data = df1.to_dict("records")
         return data
 
-    @dashapp.callback(
+    @dashapp1.callback(
     Output('table', 'columns'),
     [Input("submit-button", "n_clicks")],
     [State("stock-input", "value")])
@@ -21,7 +21,7 @@ def register_callbacks(dashapp):
             return columns
 
 
-    @dashapp.callback(
+    @dashapp1.callback(
     Output('table2', 'data'),
     [Input("submit-button", "n_clicks")],
     [State("stock-input", "value")])
@@ -30,7 +30,7 @@ def register_callbacks(dashapp):
         data = df2.to_dict("records")
         return data
 
-    @dashapp.callback(
+    @dashapp1.callback(
     Output('table2', 'columns'),
     [Input("submit-button", "n_clicks")],
     [State("stock-input", "value")])
@@ -40,7 +40,7 @@ def register_callbacks(dashapp):
             return columns
 
 
-    @dashapp.callback(
+    @dashapp1.callback(
     Output('table3', 'data'),
     [Input("submit-button", "n_clicks")],
     [State("stock-input", "value")])
@@ -49,7 +49,7 @@ def register_callbacks(dashapp):
         data = df3.to_dict("records")
         return data
 
-    @dashapp.callback(
+    @dashapp1.callback(
     Output('table3', 'columns'),
     [Input("submit-button", "n_clicks")],
     [State("stock-input", "value")])
