@@ -69,7 +69,7 @@ def create_app():
 
 
 #def register_dashapps(app):
-def register_dashapps():
+def register_dashapps(app):
     #from app.dashapp1.layout import layout
     #from app.dashapp1.callbacks import register_callbacks
 
