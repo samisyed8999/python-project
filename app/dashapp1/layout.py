@@ -61,7 +61,8 @@ df3 = df_balance.loc[ticker]
 layout = html.Div([
     html.Div([
         html.H2('Fundemental Analysis'),
-        html.Img(src="https://github.com/samisyed8999/dash_on_flask/blob/master/app/dashapp1/assets/stock-icon.png")
+      #/app/dashapp1/assets/stock-icon.png
+        html.Img(src="/app/dashapp1/assets/stock-icon.png")
     ], className="banner"),
 
     html.Div([
