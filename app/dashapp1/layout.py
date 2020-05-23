@@ -56,6 +56,7 @@ df3 = df_balance.loc[ticker]
 
 #image_filename = 'stock-icon.png' # replace with your own image
 #encoded_image = base64.b64encode(open(image_filename, 'rb').read())
+#html.Img(src='data:image/png;base64,{}'.format(encoded_image))
                          
 layout = html.Div([
     html.Div([
