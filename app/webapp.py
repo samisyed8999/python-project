@@ -52,7 +52,7 @@ def logout():
     logout_user()
 
     #return redirect(url_for('main.index'))
-    https://testsami999.herokuapp.com/login/
+    return redirect ('https://testsami999.herokuapp.com/login/')
 
 
 @server_bp.route('/register/', methods=['GET', 'POST'])
