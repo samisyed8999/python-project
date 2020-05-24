@@ -11,56 +11,42 @@ from flask.helpers import get_root_path
 from flask_login import login_required
 from config import BaseConfig
 
-def income_statements():
 
-    global df_income
-    global ticker
-    global df1
-    global df_inc
 
-    df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER])
-    df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
-                                'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
-                                'Income (Loss) from Continuing Operations',
-                                'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
-    df_income=df_income.fillna(0)
-    df_income= df_income.apply(lambda x: x / 1000000)
-    decimals = 0
-    df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: x * 1000000)
-    df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: round(x, decimals))
-    ticker = ("AAPL")
-    df_income.rename(columns={FISCAL_YEAR : 'Year', SHARES_DILUTED : 'Shares' , SGA : 'SGA' , RD : 'R&D' , DEPR_AMOR: 'D&A' , OP_INCOME : 'Operating Income' , NON_OP_INCOME : 'Non Operating Income' , INTEREST_EXP_NET :'Interest Expense' , PRETAX_INCOME_LOSS:'Pretax Income' , INCOME_TAX: 'Income Tax'}, inplace=True)
-    df1 = df_income.loc[ticker].copy()
-    # check call backs
-def income_signals():
-    global df2
-    global df_signals
-    df_negative =df_income.copy()
-    df_negative[['Cost of Revenue', 'R&D', 'Operating Expenses', 'SGA', 'Income Tax', 'D&A', 'Interest Expense']] =df_negative[['Cost of Revenue', 'R&D', 'Operating Expenses', 'SGA', 'Income Tax', 'D&A', 'Interest Expense']].apply(lambda x: x * -1)
-    df_signals = pd.DataFrame(index=df_negative.index)
-    df_signals['Year']=df_negative['Year'].copy()
-    df_signals['Gross Profit Margin %']=round((df_negative['Gross Profit'] / df_negative['Revenue']) *100,2).copy()
-    df_signals['SGA Of Gross Profit']=round((df_negative['SGA'] / df_negative['Gross Profit']) *100,2).copy()
-    df_signals['R&D Of Gross Profit']=round((df_negative['R&D'] / df_negative['Gross Profit']) *100,2).copy()
-    df_signals['Operating margin ratio']=round((df_negative['Operating Income'] / df_negative['Revenue']) *100,2).copy()
-    df_signals['Interest Coverage']=round((df_negative['Operating Income'] / df_negative['Interest Expense']) ,2).copy()
-    df_signals['Taxes paid']=round((df_negative['Income Tax'] / df_negative['Pretax Income']) *100,2).copy()
-    df_signals['Net income margin']=round((df_negative['Net Income'] / df_negative['Revenue']) *100,2).copy()
-    df2=df_signals.loc[ticker]
-def balance_sheets():
-    global df3
-    global df_balance
-    df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
-    df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
-    df_balance=df_balance.fillna(0)
-    df_balance=df_balance.apply(lambda x: x / 1000000)
-    decimals = 0
-    df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
-    df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
-    df3 = df_balance.loc[ticker]
-income_statements()
-income_signals()
-balance_sheets()
+df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER])
+df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
+                            'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
+                            'Income (Loss) from Continuing Operations',
+                            'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
+df_income=df_income.fillna(0)
+df_income= df_income.apply(lambda x: x / 1000000)
+decimals = 0
+df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: x * 1000000)
+df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: round(x, decimals))
+ticker = ("AAPL")
+df_income.rename(columns={FISCAL_YEAR : 'Year', SHARES_DILUTED : 'Shares' , SGA : 'SGA' , RD : 'R&D' , DEPR_AMOR: 'D&A' , OP_INCOME : 'Operating Income' , NON_OP_INCOME : 'Non Operating Income' , INTEREST_EXP_NET :'Interest Expense' , PRETAX_INCOME_LOSS:'Pretax Income' , INCOME_TAX: 'Income Tax'}, inplace=True)
+df1 = df_income.loc[ticker].copy()
+# check call backs
+df_negative =df_income.copy()
+df_negative[['Cost of Revenue', 'R&D', 'Operating Expenses', 'SGA', 'Income Tax', 'D&A', 'Interest Expense']] =df_negative[['Cost of Revenue', 'R&D', 'Operating Expenses', 'SGA', 'Income Tax', 'D&A', 'Interest Expense']].apply(lambda x: x * -1)
+df_signals = pd.DataFrame(index=df_negative.index)
+df_signals['Year']=df_negative['Year'].copy()
+df_signals['Gross Profit Margin %']=round((df_negative['Gross Profit'] / df_negative['Revenue']) *100,2).copy()
+df_signals['SGA Of Gross Profit']=round((df_negative['SGA'] / df_negative['Gross Profit']) *100,2).copy()
+df_signals['R&D Of Gross Profit']=round((df_negative['R&D'] / df_negative['Gross Profit']) *100,2).copy()
+df_signals['Operating margin ratio']=round((df_negative['Operating Income'] / df_negative['Revenue']) *100,2).copy()
+df_signals['Interest Coverage']=round((df_negative['Operating Income'] / df_negative['Interest Expense']) ,2).copy()
+df_signals['Taxes paid']=round((df_negative['Income Tax'] / df_negative['Pretax Income']) *100,2).copy()
+df_signals['Net income margin']=round((df_negative['Net Income'] / df_negative['Revenue']) *100,2).copy()
+df2=df_signals.loc[ticker]
+df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
+df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
+df_balance=df_balance.fillna(0)
+df_balance=df_balance.apply(lambda x: x / 1000000)
+decimals = 0
+df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
+df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
+df3 = df_balance.loc[ticker]
 
 
 def create_app():
@@ -83,7 +69,7 @@ def register_dashapps(app):
                          url_base_pathname='/dashboard/',
                          assets_folder=get_root_path(__name__) + '/assets/',
                          meta_tags=[meta_viewport])
-    dashapp1.title = 'Financial Statements'
+    #dashapp1.title = 'Financial Statements'
     dashapp1.layout = html.Div([
         html.Div([
             html.H2('Fundemental Analysis'),
@@ -143,61 +129,61 @@ def register_dashapps(app):
 
         ])
     ])
-    def callbacks():
-        @dashapp1.callback(
-            Output('table', 'data'),
-            [Input("submit-button", "n_clicks")],
-            [State("stock-input", "value")])
-        def update_data(n_click, input_value):
-            df1 = df_income.loc[input_value]
-            data = df1.to_dict("records")
-            return data
+    
+    @dashapp1.callback(
+        Output('table', 'data'),
+        [Input("submit-button", "n_clicks")],
+        [State("stock-input", "value")])
+    def update_data(n_click, input_value):
+        df1 = df_income.loc[input_value]
+        data = df1.to_dict("records")
+        return data
 
-        @dashapp1.callback(
-            Output('table', 'columns'),
-            [Input("submit-button", "n_clicks")],
-            [State("stock-input", "value")])
-        def update_columns(n_click, input_value):
-            df1 = df_income.loc[input_value]
-            columns = [{"name": i, "id": i} for i in df1.columns]
-            return columns
+    @dashapp1.callback(
+        Output('table', 'columns'),
+        [Input("submit-button", "n_clicks")],
+        [State("stock-input", "value")])
+    def update_columns(n_click, input_value):
+        df1 = df_income.loc[input_value]
+        columns = [{"name": i, "id": i} for i in df1.columns]
+        return columns
 
-        @dashapp1.callback(
-            Output('table2', 'data'),
-            [Input("submit-button", "n_clicks")],
-            [State("stock-input", "value")])
-        def update_data(n_click, input_value):
-            df2 = df_signals.loc[input_value]
-            data = df2.to_dict("records")
-            return data
+    @dashapp1.callback(
+        Output('table2', 'data'),
+        [Input("submit-button", "n_clicks")],
+        [State("stock-input", "value")])
+    def update_data(n_click, input_value):
+        df2 = df_signals.loc[input_value]
+        data = df2.to_dict("records")
+        return data
 
-        @dashapp1.callback(
-            Output('table2', 'columns'),
-            [Input("submit-button", "n_clicks")],
-            [State("stock-input", "value")])
-        def update_columns(n_click, input_value):
-            df2 = df_signals.loc[input_value]
-            columns = [{"name": i, "id": i} for i in df2.columns]
-            return columns
+    @dashapp1.callback(
+        Output('table2', 'columns'),
+        [Input("submit-button", "n_clicks")],
+        [State("stock-input", "value")])
+    def update_columns(n_click, input_value):
+        df2 = df_signals.loc[input_value]
+        columns = [{"name": i, "id": i} for i in df2.columns]
+        return columns
 
-        @dashapp1.callback(
-            Output('table3', 'data'),
-            [Input("submit-button", "n_clicks")],
-            [State("stock-input", "value")])
-        def update_data(n_click, input_value):
-            df3 = df_balance.loc[input_value]
-            data = df3.to_dict("records")
-            return data
+    @dashapp1.callback(
+        Output('table3', 'data'),
+        [Input("submit-button", "n_clicks")],
+        [State("stock-input", "value")])
+    def update_data(n_click, input_value):
+        df3 = df_balance.loc[input_value]
+        data = df3.to_dict("records")
+        return data
 
-        @dashapp1.callback(
-            Output('table3', 'columns'),
-            [Input("submit-button", "n_clicks")],
-            [State("stock-input", "value")])
-        def update_columns(n_click, input_value):
-            df3 = df_balance.loc[input_value]
-            columns = [{"name": i, "id": i} for i in df3.columns]
-            return columns
-    callbacks()
+    @dashapp1.callback(
+        Output('table3', 'columns'),
+        [Input("submit-button", "n_clicks")],
+        [State("stock-input", "value")])
+    def update_columns(n_click, input_value):
+        df3 = df_balance.loc[input_value]
+        columns = [{"name": i, "id": i} for i in df3.columns]
+        return columns
+    
     
     
 
