@@ -58,8 +58,8 @@ def logout():
 @server_bp.route('/register/', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        #return redirect(url_for('main.index'))
-        return redirect('https://testsami999.herokuapp.com/dashboard/')
+        return redirect(url_for('main.index'))
+        #return redirect('https://testsami999.herokuapp.com/dashboard/')
 
     form = RegistrationForm()
     if form.validate_on_submit():
