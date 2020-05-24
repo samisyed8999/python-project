@@ -92,6 +92,13 @@ def register_dashapps(app):
             dcc.Input(id="stock-input", value=ticker, type="text"),
             html.Button(id="submit-button", n_clicks=0, children="Submit", className="ticker2")
         ], className="ticker1"),
+      
+        html.Div([
+          html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
+              href = 'https://testsami999.herokuapp.com/logout/')
+        ], className="logout1"),
+      
+          
 
 
         dcc.Tabs(id="tabs", value='Tab1', className='custom-tabs-container', children=[
