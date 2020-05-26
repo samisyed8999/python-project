@@ -10,6 +10,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 
+sf.set_data_dir('~/simfin_data/')
+api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
+
 def python():
     def income_statements():
 
