@@ -15,7 +15,10 @@ api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
 
 class python:
         df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER,])
-        df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
+        del df_income['Fiscal Period']
+        del df_income['Currency']
+        del df_income['Publish Date']
+        df_income = df_income.del(['SimFinId', 'Shares (Basic)',
                                     'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
                                     'Income (Loss) from Continuing Operations',
                                     'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
@@ -50,12 +53,12 @@ class python:
 
         df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
         df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
-        df_balance=df_balance.fillna(0)
-        df_balance = df_balance.astype('float')
-        df_balance=df_balance.apply(lambda x: x / 1000000)
+        #df_balance=df_balance.fillna(0)
+        #df_balance = df_balance.astype('float')
+        #df_balance=df_balance.apply(lambda x: x / 1000000)
         decimals = 0
-        df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
-        df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
+        #df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
+        #df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
         df3 = df_balance.loc[ticker]
 
 class graphs:
