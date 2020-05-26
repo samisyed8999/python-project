@@ -23,10 +23,16 @@ df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKE
 df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
                             'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
                             'Income (Loss) from Continuing Operations',
-                            'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date', 'Fiscal Year'], axis = 1)
+                            'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date', ], axis = 1)
 df_income=df_income.fillna(0)
-df_income= df_income.apply(lambda x: x / 1000000)
-decimals = 0
+df_income[['Shares (Diluted)','Revenue','Cost of Revenue','Gross Profit','Operating Expenses',
+           'Selling, General & Administrative','Research & Development','Operating Income (Loss)',
+           'Non-Operating Income (Loss)','Pretax Income (Loss)','Income Tax (Expense) Benefit, Net','Net Income','Interest Expense, Net', 'Depreciation & Amortization']]= df_income[['Shares (Diluted)','Revenue','Cost of Revenue','Gross Profit','Operating Expenses',
+             'Selling, General & Administrative','Research & Development','Operating Income (Loss)',
+             'Non-Operating Income (Loss)','Pretax Income (Loss)','Income Tax (Expense) Benefit, Net',
+             'Net Income','Interest Expense, Net', 'Depreciation & Amortization']].apply(lambda x: x / 1000000)
+#df_income= df_income.apply(lambda x: x / 1000000)
+#decimals = 0
 # df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: x * 1000000)
 # df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: round(x, decimals))
 ticker = ("AAPL")
