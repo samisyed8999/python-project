@@ -31,7 +31,6 @@ def create_app():
 
 def register_dashapps(app):
     from pyth import python
-    python()
     # Meta tags for viewport responsiveness
     meta_viewport = {"name": "viewport", "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
 
@@ -42,6 +41,9 @@ def register_dashapps(app):
                          meta_tags=[meta_viewport])
     #html.Img(src= dashapp1.get_asset_url('stock-icon.png')) 
     dashapp1.title = 'Financial Statements'
+    
+    with app.app_context():
+        python(dashapp1)
 
     dashapp1.layout = html.Div([
     html.Div([
