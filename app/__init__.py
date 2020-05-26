@@ -433,7 +433,7 @@ def register_dashapps(app):
     ])
 ])
         
-@app.callback(
+@dashapp1.callback(
 Output('table', 'data'),
 [Input("drop-down", "value")])
 def update_data(input_value):
@@ -441,7 +441,7 @@ def update_data(input_value):
         data = df1.to_dict("records")
         return data
 
-@app.callback(
+@dashapp1.callback(
 Output('table', 'columns'),
 [Input("drop-down", "value")])
 def update_columns(input_value):
@@ -449,7 +449,7 @@ def update_columns(input_value):
         columns = [{"name": i, "id": i} for i in df1.columns]
         return columns
 
-@app.callback(
+@dashapp1.callback(
 Output('table2', 'data'),
 [Input("drop-down", "value")])
 def update_data(input_value):
@@ -457,7 +457,7 @@ def update_data(input_value):
         data = df2.to_dict("records")
         return data
 
-@app.callback(
+@dashapp1.callback(
 Output('table2', 'columns'),
 [Input("drop-down", "value")])
 def update_columns(input_value):
@@ -465,7 +465,7 @@ def update_columns(input_value):
         columns = [{"name": i, "id": i} for i in df2.columns]
         return columns
 
-@app.callback(
+@dashapp1.callback(
 Output('table3', 'data'),
 [Input("drop-down", "value")])
 def update_data(input_value):
@@ -473,7 +473,7 @@ def update_data(input_value):
         data = df3.to_dict("records")
         return data
 
-@app.callback(
+@dashapp1.callback(
 Output('table3', 'columns'),
 [Input("drop-down", "value")])
 def update_columns(input_value):
@@ -486,7 +486,7 @@ def update_columns(input_value):
 
 
 
-@app.callback(
+@dashapp1.callback(
 Output('sales', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -505,7 +505,7 @@ def update_fig(input_value):
         fig1.update_yaxes(rangemode="tozero")
         return fig1
 
-@app.callback(
+@dashapp1.callback(
 Output('costs', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -524,7 +524,7 @@ def update_fig(input_value):
         fig2.update_yaxes(rangemode="tozero")
         return fig2
 
-@app.callback(
+@dashapp1.callback(
 Output('operating', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -543,7 +543,7 @@ def update_fig(input_value):
         fig3.update_yaxes(rangemode="tozero")
         return fig3
 
-@app.callback(
+@dashapp1.callback(
 Output('interest', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -564,7 +564,7 @@ def update_fig(input_value):
         fig4.update_yaxes(rangemode="tozero")
         return fig4
 
-@app.callback(
+@dashapp1.callback(
 Output('tax', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -582,7 +582,7 @@ def update_fig(input_value):
         fig5.update_yaxes(rangemode="tozero")
         return fig5
 
-@app.callback(
+@dashapp1.callback(
 Output('shares', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -598,7 +598,7 @@ def update_fig(input_value):
         fig6.update_yaxes(rangemode="tozero")
         return fig6
 
-@app.callback(
+@dashapp1.callback(
 Output('profit-margin', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -615,7 +615,7 @@ def update_fig(input_value):
         fig7.update_yaxes(rangemode="tozero")
         return fig7
 
-@app.callback(
+@dashapp1.callback(
 Output('SGA', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -633,7 +633,7 @@ def update_fig(input_value):
         fig8.update_yaxes(rangemode="tozero")
         return fig8
 
-@app.callback(
+@dashapp1.callback(
 Output('R&D', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -651,7 +651,7 @@ def update_fig(input_value):
         fig9.update_yaxes(rangemode="tozero")
         return fig9
 
-@app.callback(
+@dashapp1.callback(
 Output('operating-margin-ratio', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -670,7 +670,7 @@ def update_fig(input_value):
         fig10.update_yaxes(rangemode="tozero")
         return fig10
 
-@app.callback(
+@dashapp1.callback(
 Output('interest-coverage', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
@@ -690,7 +690,7 @@ def update_fig(input_value):
         fig11.update_yaxes(rangemode="tozero")
         return fig11
 
-@app.callback(
+@dashapp1.callback(
 Output('taxes-paid', 'figure'),
 [Input("drop-down", "value")])
 def update_fig(input_value):
