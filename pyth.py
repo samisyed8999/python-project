@@ -14,15 +14,12 @@ sf.set_data_dir('~/simfin_data/')
 api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
 
 class python:
-        df_income= del df_income['Fiscal Period']
-        df_income= del df_income['Currency']
-        df_income = del df_income['Publish Date']
-        df_income = del df_income['Report Date']
+
         df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER,])
-        df_income = df_income.drop(['SimFinId', 'Shares (Basic)',
+        df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
                                     'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
                                     'Income (Loss) from Continuing Operations',
-                                    'Net Income (Common)','Pretax Income (Loss), Adj.'], axis = 1)
+                                    'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
         df_income=df_income.fillna(0)
         #df_income = df_income.astype('float')
         #df_income= df_income.apply(lambda x: x / 1000000)
