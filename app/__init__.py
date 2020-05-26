@@ -214,500 +214,500 @@ def create_app():
 
 
 def register_dashapps(app):
-    # Meta tags for viewport responsiveness
-    meta_viewport = {"name": "viewport", "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
+        # Meta tags for viewport responsiveness
+        meta_viewport = {"name": "viewport", "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
 
-    dashapp1 = dash.Dash(__name__,
+        dashapp1 = dash.Dash(__name__,
                          server=app,
                          url_base_pathname='/dashboard/',
                          assets_folder=get_root_path(__name__) + '/assets/',
                          meta_tags=[meta_viewport])
-    #html.Img(src= dashapp1.get_asset_url('stock-icon.png')) 
-    dashapp1.title = 'Financial Statements'
+        #html.Img(src= dashapp1.get_asset_url('stock-icon.png')) 
+        dashapp1.title = 'Financial Statements'
+        app.layout = html.Div([
+            html.Div([
+                html.H2('Fundemental Analysis'),
+                html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
+                            href = 'https://testsami999.herokuapp.com/logout/'),
+                html.Img(src="/assets/stock-icon.png"),
+            ], className="banner"),
 
-    dashapp1.layout = html.Div([
-    html.Div([
-        html.H2('Fundemental Analysis'),
-        html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
-                    href = 'https://testsami999.herokuapp.com/logout/'),
-        html.Img(src= dashapp1.get_asset_url('stock-icon.png')),
-    ], className="banner"),
+            html.Div([
+                dcc.Dropdown(id='drop-down', options=[
+                    {'label': i, 'value': i} for i in df_names
+                ], multi=False, placeholder='Enter a ticker'),
+            ], className='drops'),
 
-    html.Div([
-        dcc.Dropdown(id='drop-down', options=[
-            {'label': i, 'value': i} for i in df_names
-        ], multi=False, placeholder='Enter a ticker'),
-    ], className='drops'),
+            dcc.Tabs(id="tabs", value='Tab2', className='custom-tabs-container', children=[
+                dcc.Tab(label='Portfolio tracker', id='tab1', value= 'Tab1', selected_className='custom-tab--selected', children=[
 
-    dcc.Tabs(id="tabs", value='Tab2', className='custom-tabs-container', children=[
-        dcc.Tab(label='Portfolio tracker', id='tab1', value= 'Tab1', selected_className='custom-tab--selected', children=[
-
-
-
-        ]),
-        dcc.Tab(label='Financial Statements', id='tab2', value= 'Tab2', selected_className='custom-tab--selected', children=[
-            dcc.Tabs( className ='sub-tab-container', children=[
-                dcc.Tab(label='Income Statement', selected_className='sub-tab', children=[
-                    dash_table.DataTable(
-                        style_cell={
-                                'whiteSpace': 'normal',
-                                'height': 'auto',
-                            },
-                        style_table={
-                            'width': '95%',
-                            'margin': '20px 20px 0px'
-
-                        },
-                        id='table',
-                        columns=[{"name": i, "id": i} for i in df1.columns],
-                        data=df1.to_dict('records'),
-                    ),
-
-                    html.Div([
-                       dcc.Graph(id='sales', config={'displayModeBar':False}, figure=fig1, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            'display': 'inline-block',
-                            "margin-left":"20px"
-                       }),
-
-                        dcc.Graph(id='costs', config={'displayModeBar':False}, figure=fig2, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            'display': 'inline-block',
-                            #"margin-left":"-100px"
-                        }),
-
-                        dcc.Graph(id='operating', config={'displayModeBar':False}, figure=fig3, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            "display": "inline-block",
-                            #"margin-left":"-100px"
-                        }),
-
-
-                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
-                    html.Div([
-                       dcc.Graph(id='interest', config={'displayModeBar':False}, figure=fig4, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            'display': 'inline-block',
-                            "margin-left":"20px"
-
-                       }),
-
-                        dcc.Graph(id='tax', config={'displayModeBar':False}, figure=fig5, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            'display': 'inline-block'
-
-
-                        }),
-
-                        dcc.Graph(id='shares', config={'displayModeBar':False}, figure=fig6, style={
-
-                            "height": "40vh",
-                            "width": "30vw",
-                            "float": "left",
-                            'display': 'inline-block'
-
-
-                        }),
-
-
-                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
-
-
-                    # html.Div([
-                    #     html.H6('Key Ratios %')
-                    # ], className='text1'),
-
-                    dash_table.DataTable(
-                        style_table={
-                            'width': '95%',
-                            'margin': '0px 20px 0px'
-                        },
-                        id='table2',
-                        columns=[{"name": i, "id": i} for i in df2.columns],
-                        data=df2.to_dict('records'),
-                    ),
-
-                    html.Div([
-                       dcc.Graph(id='profit-margin', config={'displayModeBar':False}, figure=fig7, style={
-
-                            "height": "40vh",
-                            "width": "31vw",
-                            "float": "left",
-                            'display': 'inline-block',
-                            "margin-left":"20px"
-                       }),
-
-                        dcc.Graph(id='SGA', config={'displayModeBar':False}, figure=fig8, style={
-
-                            "height": "40vh",
-                            "width": "31vw",
-                            "float": "left",
-                            'display': 'inline-block',
-                            "margin-left":"20px"
-                        }),
-
-                        dcc.Graph(id='R&D', config={'displayModeBar':False}, figure=fig9, style={
-
-                            "height": "40vh",
-                            "width": "30vw",
-                            "float": "left",
-                            "display": "inline-block",
-                            "margin-left":"20px"
-                        }),
-
-
-                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
-                    html.Div([
-                       dcc.Graph(id='operating-margin-ratio', config={'displayModeBar':False}, figure=fig10, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            'display': 'inline-block',
-                            "margin-left":"20px"
-
-                       }),
-
-                        dcc.Graph(id='interest-coverage', config={'displayModeBar':False}, figure=fig11, style={
-
-                            "height": "40vh",
-                            "width": "32vw",
-                            "float": "left",
-                            'display': 'inline-block'
-
-
-                        }),
-
-                        dcc.Graph(id='taxes-paid', config={'displayModeBar':False}, figure=fig12, style={
-
-                            "height": "40vh",
-                            "width": "30vw",
-                            "float": "left",
-                            'display': 'inline-block'
-
-
-                        }),
-
-
-                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
-
-                ]),
-                dcc.Tab(label='Balance Sheet', selected_className='sub-tab', children=[
-                        dash_table.DataTable(
-                            style_cell={
-                                'whiteSpace': 'normal',
-                                'height': 'auto',
-                            },
-                            style_table={
-                            'width': '10%',
-                            'margin': '20px 20px 0px'
-                            },
-                            id='table3',
-                            columns=[{"name": i, "id": i} for i in df3.columns],
-                            data=df3.to_dict('records'),
-                        ),
 
 
                 ]),
-                dcc.Tab(label='Cash Flow statement ', selected_className='sub-tab', children=[]),
+                dcc.Tab(label='Financial Statements', id='tab2', value= 'Tab2', selected_className='custom-tab--selected', children=[
+                    dcc.Tabs( className ='sub-tab-container', children=[
+                        dcc.Tab(label='Income Statement', selected_className='sub-tab', children=[
+                            dash_table.DataTable(
+                                style_cell={
+                                        'whiteSpace': 'normal',
+                                        'height': 'auto',
+                                    },
+                                style_table={
+                                    'width': '95%',
+                                    'margin': '20px 20px 0px'
+
+                                },
+                                id='table',
+                                columns=[{"name": i, "id": i} for i in df1.columns],
+                                data=df1.to_dict('records'),
+                            ),
+
+                            html.Div([
+                               dcc.Graph(id='sales', config={'displayModeBar':False}, figure=fig1, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    'display': 'inline-block',
+                                    "margin-left":"20px"
+                               }),
+
+                                dcc.Graph(id='costs', config={'displayModeBar':False}, figure=fig2, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    'display': 'inline-block',
+                                    #"margin-left":"-100px"
+                                }),
+
+                                dcc.Graph(id='operating', config={'displayModeBar':False}, figure=fig3, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    "display": "inline-block",
+                                    #"margin-left":"-100px"
+                                }),
+
+
+                            ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
+                            html.Div([
+                               dcc.Graph(id='interest', config={'displayModeBar':False}, figure=fig4, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    'display': 'inline-block',
+                                    "margin-left":"20px"
+
+                               }),
+
+                                dcc.Graph(id='tax', config={'displayModeBar':False}, figure=fig5, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    'display': 'inline-block'
+
+
+                                }),
+
+                                dcc.Graph(id='shares', config={'displayModeBar':False}, figure=fig6, style={
+
+                                    "height": "40vh",
+                                    "width": "30vw",
+                                    "float": "left",
+                                    'display': 'inline-block'
+
+
+                                }),
+
+
+                            ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
+
+
+                            # html.Div([
+                            #     html.H6('Key Ratios %')
+                            # ], className='text1'),
+
+                            dash_table.DataTable(
+                                style_table={
+                                    'width': '95%',
+                                    'margin': '0px 20px 0px'
+                                },
+                                id='table2',
+                                columns=[{"name": i, "id": i} for i in df2.columns],
+                                data=df2.to_dict('records'),
+                            ),
+
+                            html.Div([
+                               dcc.Graph(id='profit-margin', config={'displayModeBar':False}, figure=fig7, style={
+
+                                    "height": "40vh",
+                                    "width": "31vw",
+                                    "float": "left",
+                                    'display': 'inline-block',
+                                    "margin-left":"20px"
+                               }),
+
+                                dcc.Graph(id='SGA', config={'displayModeBar':False}, figure=fig8, style={
+
+                                    "height": "40vh",
+                                    "width": "31vw",
+                                    "float": "left",
+                                    'display': 'inline-block',
+                                    "margin-left":"20px"
+                                }),
+
+                                dcc.Graph(id='R&D', config={'displayModeBar':False}, figure=fig9, style={
+
+                                    "height": "40vh",
+                                    "width": "30vw",
+                                    "float": "left",
+                                    "display": "inline-block",
+                                    "margin-left":"20px"
+                                }),
+
+
+                            ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
+                            html.Div([
+                               dcc.Graph(id='operating-margin-ratio', config={'displayModeBar':False}, figure=fig10, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    'display': 'inline-block',
+                                    "margin-left":"20px"
+
+                               }),
+
+                                dcc.Graph(id='interest-coverage', config={'displayModeBar':False}, figure=fig11, style={
+
+                                    "height": "40vh",
+                                    "width": "32vw",
+                                    "float": "left",
+                                    'display': 'inline-block'
+
+
+                                }),
+
+                                dcc.Graph(id='taxes-paid', config={'displayModeBar':False}, figure=fig12, style={
+
+                                    "height": "40vh",
+                                    "width": "30vw",
+                                    "float": "left",
+                                    'display': 'inline-block'
+
+
+                                }),
+
+
+                            ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
+
+                        ]),
+                        dcc.Tab(label='Balance Sheet', selected_className='sub-tab', children=[
+                                dash_table.DataTable(
+                                    style_cell={
+                                        'whiteSpace': 'normal',
+                                        'height': 'auto',
+                                    },
+                                    style_table={
+                                    'width': '10%',
+                                    'margin': '20px 20px 0px'
+                                    },
+                                    id='table3',
+                                    columns=[{"name": i, "id": i} for i in df3.columns],
+                                    data=df3.to_dict('records'),
+                                ),
+
+
+                        ]),
+                        dcc.Tab(label='Cash Flow statement ', selected_className='sub-tab', children=[]),
+                    ])
+                ]),
+                dcc.Tab(label='Intrinsic value estimations', id='tab3', value= 'Tab3',selected_className='custom-tab--selected',  children=["yo"]),
+                dcc.Tab(label='Machine learning', id='tab4', value= 'Tab4', selected_className='custom-tab--selected',  children=["yo"]),
+
             ])
-        ]),
-        dcc.Tab(label='Intrinsic value estimations', id='tab3', value= 'Tab3',selected_className='custom-tab--selected',  children=["yo"]),
-        dcc.Tab(label='Machine learning', id='tab4', value= 'Tab4', selected_className='custom-tab--selected',  children=["yo"]),
+        ])
 
-    ])
-])
-        
-@dashapp1.callback(
-Output('table', 'data'),
-[Input("drop-down", "value")])
-def update_data(input_value):
-        df1 = df_income.loc[input_value]
-        data = df1.to_dict("records")
-        return data
 
-@dashapp1.callback(
-Output('table', 'columns'),
-[Input("drop-down", "value")])
-def update_columns(input_value):
-        df1 = df_income.loc[input_value]
-        columns = [{"name": i, "id": i} for i in df1.columns]
-        return columns
+        @dashapp1.callback(
+        Output('table', 'data'),
+        [Input("drop-down", "value")])
+        def update_data(input_value):
+                df1 = df_income.loc[input_value]
+                data = df1.to_dict("records")
+                return data
 
-@dashapp1.callback(
-Output('table2', 'data'),
-[Input("drop-down", "value")])
-def update_data(input_value):
-        df2 = df_signals.loc[input_value]
-        data = df2.to_dict("records")
-        return data
+        @dashapp1.callback(
+        Output('table', 'columns'),
+        [Input("drop-down", "value")])
+        def update_columns(input_value):
+                df1 = df_income.loc[input_value]
+                columns = [{"name": i, "id": i} for i in df1.columns]
+                return columns
 
-@dashapp1.callback(
-Output('table2', 'columns'),
-[Input("drop-down", "value")])
-def update_columns(input_value):
-        df2 = df_signals.loc[input_value]
-        columns = [{"name": i, "id": i} for i in df2.columns]
-        return columns
+        @dashapp1.callback(
+        Output('table2', 'data'),
+        [Input("drop-down", "value")])
+        def update_data(input_value):
+                df2 = df_signals.loc[input_value]
+                data = df2.to_dict("records")
+                return data
 
-@dashapp1.callback(
-Output('table3', 'data'),
-[Input("drop-down", "value")])
-def update_data(input_value):
-        df3 = df_balance.loc[input_value]
-        data = df3.to_dict("records")
-        return data
+        @dashapp1.callback(
+        Output('table2', 'columns'),
+        [Input("drop-down", "value")])
+        def update_columns(input_value):
+                df2 = df_signals.loc[input_value]
+                columns = [{"name": i, "id": i} for i in df2.columns]
+                return columns
 
-@dashapp1.callback(
-Output('table3', 'columns'),
-[Input("drop-down", "value")])
-def update_columns(input_value):
-        df3 = df_balance.loc[input_value]
-        columns = [{"name": i, "id": i} for i in df3.columns]
-        return columns
+        @dashapp1.callback(
+        Output('table3', 'data'),
+        [Input("drop-down", "value")])
+        def update_data(input_value):
+                df3 = df_balance.loc[input_value]
+                data = df3.to_dict("records")
+                return data
+
+        @dashapp1.callback(
+        Output('table3', 'columns'),
+        [Input("drop-down", "value")])
+        def update_columns(input_value):
+                df3 = df_balance.loc[input_value]
+                columns = [{"name": i, "id": i} for i in df3.columns]
+                return columns
 
 
 
 
 
 
-@dashapp1.callback(
-Output('sales', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df11 = df_negative.loc[input_value]
-        fig1 = make_subplots(specs=[[{"secondary_y": True}]])
-        fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Revenue']), name="Revenue"))
-        fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Cost of Revenue']), name="Cost of Revenue"))
-        fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Gross Profit']), name="Gross Profit"))
-        fig1.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        # fig1.update_xaxes(title_text="Year")
-        fig1.update_layout(title={'text': "Sales", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig1.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig1.update_yaxes(rangemode="tozero")
-        return fig1
+        @dashapp1.callback(
+        Output('sales', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df11 = df_negative.loc[input_value]
+                fig1 = make_subplots(specs=[[{"secondary_y": True}]])
+                fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Revenue']), name="Revenue"))
+                fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Cost of Revenue']), name="Cost of Revenue"))
+                fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Gross Profit']), name="Gross Profit"))
+                fig1.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                # fig1.update_xaxes(title_text="Year")
+                fig1.update_layout(title={'text': "Sales", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig1.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig1.update_yaxes(rangemode="tozero")
+                return fig1
 
-@dashapp1.callback(
-Output('costs', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df11 = df_negative.loc[input_value]
-        fig2 = make_subplots(specs=[[{"secondary_y": True}]])
-        fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Expenses']), name="Operating Expenses"))
-        fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['SGA']), name="SGA"))
-        fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['R&D']), name="R&D"))
-        fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['D&A']), name="D&A"))
-        fig2.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig2.update_layout(title={'text': "Costs", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig2.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig2.update_yaxes(rangemode="tozero")
-        return fig2
+        @dashapp1.callback(
+        Output('costs', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df11 = df_negative.loc[input_value]
+                fig2 = make_subplots(specs=[[{"secondary_y": True}]])
+                fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Expenses']), name="Operating Expenses"))
+                fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['SGA']), name="SGA"))
+                fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['R&D']), name="R&D"))
+                fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['D&A']), name="D&A"))
+                fig2.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig2.update_layout(title={'text': "Costs", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig2.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig2.update_yaxes(rangemode="tozero")
+                return fig2
 
-@dashapp1.callback(
-Output('operating', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df11 = df_negative.loc[input_value]
-        fig3 = make_subplots(specs=[[{"secondary_y": True}]])
-        fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Expenses']), name="Expenses"))
-        fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Income']), name="Operating Income"))
-        fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Gross Profit']), name="Gross Profit"))
-        fig3.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig3.update_layout(title={'text': "Gross Profit to Operating Income", 'y': 0.96, 'x': 0.5, 'xanchor': 'center',
-                                  'yanchor': 'top'})
-        fig3.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig3.update_yaxes(rangemode="tozero")
-        return fig3
+        @dashapp1.callback(
+        Output('operating', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df11 = df_negative.loc[input_value]
+                fig3 = make_subplots(specs=[[{"secondary_y": True}]])
+                fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Expenses']), name="Expenses"))
+                fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Income']), name="Operating Income"))
+                fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Gross Profit']), name="Gross Profit"))
+                fig3.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig3.update_layout(title={'text': "Gross Profit to Operating Income", 'y': 0.96, 'x': 0.5, 'xanchor': 'center',
+                                          'yanchor': 'top'})
+                fig3.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig3.update_yaxes(rangemode="tozero")
+                return fig3
 
-@dashapp1.callback(
-Output('interest', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df11 = df_negative.loc[input_value]
-        fig4 = make_subplots(specs=[[{"secondary_y": True}]])
-        fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Income']), name="Operating Income"))
-        fig4.add_trace(
-            go.Scatter(x=list(df11['Year']), y=list(df11['Non Operating Income']), name="Non Operating Income"))
-        fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Pretax Income']), name="Pretax Income"))
-        fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Interest Expense']), name="Interest Expense"))
-        fig4.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig4.update_layout(
-            title={'text': "Measuring Interest Expense", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig4.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig4.update_yaxes(rangemode="tozero")
-        return fig4
+        @dashapp1.callback(
+        Output('interest', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df11 = df_negative.loc[input_value]
+                fig4 = make_subplots(specs=[[{"secondary_y": True}]])
+                fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Income']), name="Operating Income"))
+                fig4.add_trace(
+                    go.Scatter(x=list(df11['Year']), y=list(df11['Non Operating Income']), name="Non Operating Income"))
+                fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Pretax Income']), name="Pretax Income"))
+                fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Interest Expense']), name="Interest Expense"))
+                fig4.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig4.update_layout(
+                    title={'text': "Measuring Interest Expense", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig4.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig4.update_yaxes(rangemode="tozero")
+                return fig4
 
-@dashapp1.callback(
-Output('tax', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df11 = df_negative.loc[input_value]
-        fig5 = make_subplots(specs=[[{"secondary_y": True}]])
-        fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Net Income']), name="Net Income"))
-        fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Income Tax']), name="Income Tax"))
-        fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Pretax Income']), name="Pretax Income"))
-        fig5.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig5.update_layout(title={'text': "Measuring Tax", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig5.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig5.update_yaxes(rangemode="tozero")
-        return fig5
+        @dashapp1.callback(
+        Output('tax', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df11 = df_negative.loc[input_value]
+                fig5 = make_subplots(specs=[[{"secondary_y": True}]])
+                fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Net Income']), name="Net Income"))
+                fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Income Tax']), name="Income Tax"))
+                fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Pretax Income']), name="Pretax Income"))
+                fig5.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig5.update_layout(title={'text': "Measuring Tax", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig5.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig5.update_yaxes(rangemode="tozero")
+                return fig5
 
-@dashapp1.callback(
-Output('shares', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df11 = df_negative.loc[input_value]
-        fig6 = make_subplots()
-        fig6.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Shares']), name="Shares"))
-        fig6.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig6.update_layout(title={'text': "Shares", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig6.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig6.update_yaxes(rangemode="tozero")
-        return fig6
+        @dashapp1.callback(
+        Output('shares', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df11 = df_negative.loc[input_value]
+                fig6 = make_subplots()
+                fig6.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Shares']), name="Shares"))
+                fig6.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig6.update_layout(title={'text': "Shares", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig6.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig6.update_yaxes(rangemode="tozero")
+                return fig6
 
-@dashapp1.callback(
-Output('profit-margin', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df2 = df_signals.loc[input_value]
-        fig7 = make_subplots()
-        fig7.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Gross Profit Margin %']), name="proft-maergin"))
-        fig7.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig7.update_layout(
-            title={'text': "Gross Profit Margin %", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig7.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig7.update_yaxes(rangemode="tozero")
-        return fig7
+        @dashapp1.callback(
+        Output('profit-margin', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df2 = df_signals.loc[input_value]
+                fig7 = make_subplots()
+                fig7.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Gross Profit Margin %']), name="proft-maergin"))
+                fig7.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig7.update_layout(
+                    title={'text': "Gross Profit Margin %", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig7.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig7.update_yaxes(rangemode="tozero")
+                return fig7
 
-@dashapp1.callback(
-Output('SGA', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df2 = df_signals.loc[input_value]
-        fig8 = make_subplots()
-        fig8.add_trace(
-            go.Scatter(x=list(df2['Year']), y=list(df2['SGA Of Gross Profit']), name="SGA", line=dict(color="#EF553B")))
-        fig8.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig8.update_layout(
-            title={'text': "SGA of Gross Profit % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig8.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig8.update_yaxes(rangemode="tozero")
-        return fig8
+        @dashapp1.callback(
+        Output('SGA', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df2 = df_signals.loc[input_value]
+                fig8 = make_subplots()
+                fig8.add_trace(
+                    go.Scatter(x=list(df2['Year']), y=list(df2['SGA Of Gross Profit']), name="SGA", line=dict(color="#EF553B")))
+                fig8.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig8.update_layout(
+                    title={'text': "SGA of Gross Profit % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig8.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig8.update_yaxes(rangemode="tozero")
+                return fig8
 
-@dashapp1.callback(
-Output('R&D', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df2 = df_signals.loc[input_value]
-        fig9 = make_subplots()
-        fig9.add_trace(
-            go.Scatter(x=list(df2['Year']), y=list(df2['R&D Of Gross Profit']), name="R&D", line=dict(color='#00cc96')))
-        fig9.update_layout(legend=dict(x=0, y=1,
-                                       traceorder="normal",
-                                       font=dict(family="sans-serif", size=12, color="black"),
-                                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
-        fig9.update_layout(
-            title={'text': "R&D of Gross Profit % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig9.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig9.update_yaxes(rangemode="tozero")
-        return fig9
+        @dashapp1.callback(
+        Output('R&D', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df2 = df_signals.loc[input_value]
+                fig9 = make_subplots()
+                fig9.add_trace(
+                    go.Scatter(x=list(df2['Year']), y=list(df2['R&D Of Gross Profit']), name="R&D", line=dict(color='#00cc96')))
+                fig9.update_layout(legend=dict(x=0, y=1,
+                                               traceorder="normal",
+                                               font=dict(family="sans-serif", size=12, color="black"),
+                                               bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+                fig9.update_layout(
+                    title={'text': "R&D of Gross Profit % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig9.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig9.update_yaxes(rangemode="tozero")
+                return fig9
 
-@dashapp1.callback(
-Output('operating-margin-ratio', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df2 = df_signals.loc[input_value]
-        fig10 = make_subplots(specs=[[{"secondary_y": True}]])
-        fig10.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Operating margin ratio']), name="Operating Margin"))
-        fig10.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Net income margin']), name="Net Income"))
-        fig10.update_layout(legend=dict(x=0, y=1,
-                                        traceorder="normal",
-                                        font=dict(family="sans-serif", size=12, color="black"),
-                                        bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
-                                        borderwidth=0))
-        fig10.update_layout(
-            title={'text': "Margin ratio % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig10.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig10.update_yaxes(rangemode="tozero")
-        return fig10
+        @dashapp1.callback(
+        Output('operating-margin-ratio', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df2 = df_signals.loc[input_value]
+                fig10 = make_subplots(specs=[[{"secondary_y": True}]])
+                fig10.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Operating margin ratio']), name="Operating Margin"))
+                fig10.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Net income margin']), name="Net Income"))
+                fig10.update_layout(legend=dict(x=0, y=1,
+                                                traceorder="normal",
+                                                font=dict(family="sans-serif", size=12, color="black"),
+                                                bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
+                                                borderwidth=0))
+                fig10.update_layout(
+                    title={'text': "Margin ratio % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig10.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig10.update_yaxes(rangemode="tozero")
+                return fig10
 
-@dashapp1.callback(
-Output('interest-coverage', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df2 = df_signals.loc[input_value]
-        fig11 = make_subplots()
-        fig11.add_trace(
-            go.Scatter(x=list(df2['Year']), y=list(df2['Interest Coverage']), name="interest-coverage",
-                       line=dict(color='#00cc96')))
-        fig11.update_layout(legend=dict(x=0, y=1,
-                                        traceorder="normal",
-                                        font=dict(family="sans-serif", size=12, color="black"),
-                                        bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
-                                        borderwidth=0))
-        fig11.update_layout(
-            title={'text': "Interest Coverage ratio % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig11.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig11.update_yaxes(rangemode="tozero")
-        return fig11
+        @dashapp1.callback(
+        Output('interest-coverage', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df2 = df_signals.loc[input_value]
+                fig11 = make_subplots()
+                fig11.add_trace(
+                    go.Scatter(x=list(df2['Year']), y=list(df2['Interest Coverage']), name="interest-coverage",
+                               line=dict(color='#00cc96')))
+                fig11.update_layout(legend=dict(x=0, y=1,
+                                                traceorder="normal",
+                                                font=dict(family="sans-serif", size=12, color="black"),
+                                                bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
+                                                borderwidth=0))
+                fig11.update_layout(
+                    title={'text': "Interest Coverage ratio % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig11.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig11.update_yaxes(rangemode="tozero")
+                return fig11
 
-@dashapp1.callback(
-Output('taxes-paid', 'figure'),
-[Input("drop-down", "value")])
-def update_fig(input_value):
-        df2 = df_signals.loc[input_value]
-        fig12 = make_subplots()
-        fig12.add_trace(
-            go.Scatter(x=list(df2['Year']), y=list(df2['Taxes paid']), name="taxes", line=dict(color='#00cc96')))
-        fig12.update_layout(legend=dict(x=0, y=1,
-                                        traceorder="normal",
-                                        font=dict(family="sans-serif", size=12, color="black"),
-                                        bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
-                                        borderwidth=0))
-        fig12.update_layout(
-            title={'text': "Taxes % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
-        fig12.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
-        fig12.update_yaxes(rangemode="tozero")
-        return fig12
+        @dashapp1.callback(
+        Output('taxes-paid', 'figure'),
+        [Input("drop-down", "value")])
+        def update_fig(input_value):
+                df2 = df_signals.loc[input_value]
+                fig12 = make_subplots()
+                fig12.add_trace(
+                    go.Scatter(x=list(df2['Year']), y=list(df2['Taxes paid']), name="taxes", line=dict(color='#00cc96')))
+                fig12.update_layout(legend=dict(x=0, y=1,
+                                                traceorder="normal",
+                                                font=dict(family="sans-serif", size=12, color="black"),
+                                                bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)",
+                                                borderwidth=0))
+                fig12.update_layout(
+                    title={'text': "Taxes % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+                fig12.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+                fig12.update_yaxes(rangemode="tozero")
+                return fig12
 
 
     
