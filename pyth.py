@@ -70,3 +70,156 @@ def python():
     income_statements()
     income_signals()
     balance_sheets()
+
+def graphs():
+    global fig1
+    global fig2
+    global fig3
+    global fig4
+    global fig5
+    global fig6
+    global fig7
+    global fig8
+    global fig9
+    global fig10
+    global fig11
+    global fig12
+    fig1=make_subplots(specs=[[{"secondary_y": True}]])
+    fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Revenue']), name="Revenue"))
+    fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Cost of Revenue']), name="Cost of Revenue"))
+    fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Gross Profit']), name="Gross Profit"))
+    fig1.update_layout(legend=dict(x=0, y=1,
+                       traceorder="normal",
+                       font=dict(family="sans-serif", size=12, color="black"),
+                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    #fig1.update_xaxes(title_text="Year")
+    fig1.update_layout(title={'text': "Sales", 'y':0.96, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig1.update_layout(margin={'t': 25, 'b': 0, 'l':0, 'r':0})
+    fig1.update_yaxes(rangemode="tozero")
+
+    fig2=make_subplots(specs=[[{"secondary_y": True}]])
+    fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Expenses']), name="Operating Expenses"))
+    fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['SGA']), name="SGA"))
+    fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['R&D']), name="R&D"))
+    fig2.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['D&A']), name="D&A"))
+    fig2.update_layout(legend=dict(x=0, y=1,
+                       traceorder="normal",
+                       font=dict(family="sans-serif", size=12, color="black"),
+                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig2.update_layout(title={'text': "Costs", 'y':0.96, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig2.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig2.update_yaxes(rangemode="tozero")
+
+    fig3=make_subplots(specs=[[{"secondary_y": True}]])
+    fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Expenses']), name="Expenses"))
+    fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Income']), name="Operating Income"))
+    fig3.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Gross Profit']), name="Gross Profit"))
+    fig3.update_layout(legend=dict(x=0, y=1,
+                       traceorder="normal",
+                       font=dict(family="sans-serif", size=12, color="black"),
+                       bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig3.update_layout(title={'text': "Gross Profit to Operating Income", 'y':0.96, 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig3.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig3.update_yaxes(rangemode="tozero")
+
+    fig4 = make_subplots(specs=[[{"secondary_y": True}]])
+    fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Operating Income']), name="Operating Income"))
+    fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Non Operating Income']), name="Non Operating Income"))
+    fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Pretax Income']), name="Pretax Income"))
+    fig4.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Interest Expense']), name="Interest Expense"))
+    fig4.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig4.update_layout(title={'text': "Measuring Interest Expense", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig4.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig4.update_yaxes(rangemode="tozero")
+
+    fig5 = make_subplots(specs=[[{"secondary_y": True}]])
+    fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Net Income']), name="Net Income"))
+    fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Income Tax']), name="Income Tax"))
+    fig5.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Pretax Income']), name="Pretax Income"))
+    fig5.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig5.update_layout(title={'text': "Measuring Tax", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig5.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig5.update_yaxes(rangemode="tozero")
+
+    fig6 = make_subplots()
+    fig6.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Shares']), name="Shares"))
+    fig6.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig6.update_layout(title={'text': "Shares", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig6.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig6.update_yaxes(rangemode="tozero")
+
+    fig7 = make_subplots()
+    fig7.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Gross Profit Margin %']), name="proft-maergin"))
+    fig7.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig7.update_layout(title={'text': "Gross Profit Margin %", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig7.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig7.update_yaxes(rangemode="tozero")
+
+
+    fig8 = make_subplots()
+    fig8.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['SGA Of Gross Profit']), name="SGA", line=dict(color="#EF553B")))
+    fig8.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig8.update_layout(title={'text': "SGA of Gross Profit % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig8.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig8.update_yaxes(rangemode="tozero")
+
+    fig9 = make_subplots()
+    fig9.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['R&D Of Gross Profit']), name="R&D", line=dict(color='#00cc96')))
+    fig9.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig9.update_layout(
+        title={'text': "R&D of Gross Profit % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig9.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig9.update_yaxes(rangemode="tozero")
+
+    fig10 = make_subplots(specs=[[{"secondary_y": True}]])
+    fig10.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Operating margin ratio']), name="Oparting Margin"))
+    fig10.add_trace(go.Scatter(x=list(df2['Year']), y=list(df2['Net income margin']), name="Net Income"))
+    fig10.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig10.update_layout(title={'text': "Margin ratio % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig10.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig10.update_yaxes(rangemode="tozero")
+
+    fig11 = make_subplots()
+    fig11.add_trace(
+        go.Scatter(x=list(df2['Year']), y=list(df2['Interest Coverage']), name="interest-coverage", line=dict(color='#00cc96')))
+    fig11.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig11.update_layout(
+        title={'text': "Interest Coverage ratio % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig11.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig11.update_yaxes(rangemode="tozero")
+
+    fig12 = make_subplots()
+    fig12.add_trace(
+        go.Scatter(x=list(df2['Year']), y=list(df2['Taxes paid']), name="taxes", line=dict(color='#00cc96')))
+    fig12.update_layout(legend=dict(x=0, y=1,
+                                   traceorder="normal",
+                                   font=dict(family="sans-serif", size=12, color="black"),
+                                   bgcolor="rgba(50, 50, 50, 0)", bordercolor="rgba(50, 50, 50, 0)", borderwidth=0))
+    fig12.update_layout(
+        title={'text': "Taxes % ", 'y': 0.96, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top'})
+    fig12.update_layout(margin={'t': 25, 'b': 0, 'l': 0, 'r': 0})
+    fig12.update_yaxes(rangemode="tozero")
