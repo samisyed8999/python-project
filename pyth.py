@@ -18,7 +18,7 @@ class python:
         del df_income['Fiscal Period']
         del df_income['Currency']
         del df_income['Publish Date']
-        df_income = df_income.del(['SimFinId', 'Shares (Basic)',
+        df_income = df_income.drop(['SimFinId', 'Shares (Basic)',
                                     'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
                                     'Income (Loss) from Continuing Operations',
                                     'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
