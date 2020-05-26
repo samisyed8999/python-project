@@ -320,7 +320,7 @@ def register_dashapps(app):
                             }),
 
 
-                        ], style={"height" : "50vh", "width" : "95vw", "margin-top":"20px"}),
+                        ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
                         html.Div([
                            dcc.Graph(id='interest', config={'displayModeBar':False}, figure=fig4, style={
 
@@ -353,7 +353,7 @@ def register_dashapps(app):
                             }),
 
 
-                        ], style={"height" : "50vh", "width" : "95vw", "margin-top":"-20px"}),
+                        ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
 
 
                         # html.Div([
@@ -399,7 +399,7 @@ def register_dashapps(app):
                             }),
 
 
-                        ], style={"height" : "50vh", "width" : "95vw", "margin-top":"20px"}),
+                        ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
                         html.Div([
                            dcc.Graph(id='operating-margin-ratio', config={'displayModeBar':False}, figure=fig10, style={
 
@@ -432,7 +432,7 @@ def register_dashapps(app):
                             }),
 
 
-                        ], style={"height" : "50vh", "width" : "95vw", "margin-top":"-20px"}),
+                        ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
 
                     ]),
                     dcc.Tab(label='Balance Sheet', selected_className='sub-tab', children=[
