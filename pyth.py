@@ -22,7 +22,7 @@ class python:
         df_income = df_income.drop(['SimFinId', 'Shares (Basic)',
                                     'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
                                     'Income (Loss) from Continuing Operations',
-                                    'Net Income (Common)','Pretax Income (Loss), Adj.', axis = 1])
+                                    'Net Income (Common)','Pretax Income (Loss), Adj.'], axis = 1)
         df_income=df_income.fillna(0)
         df_income = df_income.astype('float')
         df_income= df_income.apply(lambda x: x / 1000000)
