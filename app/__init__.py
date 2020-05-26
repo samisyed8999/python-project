@@ -257,7 +257,7 @@ def register_dashapps(app):
         html.Div([
             html.H2('Fundemental Analysis'),
             html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
-                        href = 'https://testsami999.herokudashapp1.com/logout/'),
+                        href = 'https://testsami999.herokuapp.com/logout/'),
             html.Img(src=dashapp1.get_asset_url('stock-icon.png')),
         ], className="banner"),
 
