@@ -11,7 +11,6 @@ from flask.helpers import get_root_path
 from flask_login import login_required
 from config import BaseConfig
 from pyth import python
-from pyth import graphs
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
