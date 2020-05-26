@@ -13,7 +13,7 @@ import numpy as np
 sf.set_data_dir('~/simfin_data/')
 api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
 
-def python():
+class python():
         df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER,])
         df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
                                     'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
@@ -29,11 +29,7 @@ def python():
         df1 = df_income.loc[ticker].copy()
         df_names = df_income.index.copy()
         df_names = df_names.drop_duplicates()
-    def income_signals():
-        global df2
-        global df11
-        global df_signals
-        global df_negative
+
         df_negative =df_income.copy()
         df_negative[['Cost of Revenue', 'R&D', 'Operating Expenses', 'SGA', 'Income Tax', 'D&A', 'Interest Expense']] =df_negative[['Cost of Revenue', 'R&D', 'Operating Expenses', 'SGA', 'Income Tax', 'D&A', 'Interest Expense']].apply(lambda x: x * -1)
         df_negative['Expenses'] = df_negative['Operating Expenses'] + df_negative['SGA'] + df_negative['R&D'] + df_negative['D&A']
@@ -49,7 +45,7 @@ def python():
         df_signals['Net income margin']=round((df_negative['Net Income'] / df_negative['Revenue']) *100,2).copy()
         df_signals['Interest Coverage'] = df_signals['Interest Coverage'].replace(-np.inf, 0)
         df2=df_signals.loc[ticker]
-        
+
 
         df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
         df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
@@ -60,19 +56,7 @@ def python():
         df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
         df3 = df_balance.loc[ticker]
 
-def graphs():
-    global fig1
-    global fig2
-    global fig3
-    global fig4
-    global fig5
-    global fig6
-    global fig7
-    global fig8
-    global fig9
-    global fig10
-    global fig11
-    global fig12
+class graphs():
     fig1=make_subplots(specs=[[{"secondary_y": True}]])
     fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Revenue']), name="Revenue"))
     fig1.add_trace(go.Scatter(x=list(df11['Year']), y=list(df11['Cost of Revenue']), name="Cost of Revenue"))
