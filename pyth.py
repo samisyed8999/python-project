@@ -14,13 +14,6 @@ sf.set_data_dir('~/simfin_data/')
 api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
 
 def python():
-    def income_statements():
-
-        global df_income
-        global ticker
-        global df1
-        global df_names
-
         df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER,])
         df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
                                     'Abnormal Gains (Losses)','Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
@@ -56,9 +49,8 @@ def python():
         df_signals['Net income margin']=round((df_negative['Net Income'] / df_negative['Revenue']) *100,2).copy()
         df_signals['Interest Coverage'] = df_signals['Interest Coverage'].replace(-np.inf, 0)
         df2=df_signals.loc[ticker]
-    def balance_sheets():
-        global df3
-        global df_balance
+        
+
         df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
         df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
         df_balance=df_balance.fillna(0)
@@ -67,9 +59,6 @@ def python():
         df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
         df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
         df3 = df_balance.loc[ticker]
-    income_statements()
-    income_signals()
-    balance_sheets()
 
 def graphs():
     global fig1
