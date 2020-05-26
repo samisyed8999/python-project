@@ -212,9 +212,8 @@ def create_app():
 
     return server
 
-
 def register_dashapps(app):
-        # Meta tags for viewport responsiveness
+# Meta tags for viewport responsiveness
         meta_viewport = {"name": "viewport", "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
 
         dashapp1 = dash.Dash(__name__,
@@ -224,12 +223,12 @@ def register_dashapps(app):
                          meta_tags=[meta_viewport])
         #html.Img(src= dashapp1.get_asset_url('stock-icon.png')) 
         dashapp1.title = 'Financial Statements'
-        app.layout = html.Div([
+        dashapp1.layout = html.Div([
             html.Div([
                 html.H2('Fundemental Analysis'),
                 html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
                             href = 'https://testsami999.herokuapp.com/logout/'),
-                html.Img(src="/assets/stock-icon.png"),
+                html.Img(src=dashapp1.get_asset_url('stock-icon.png')),
             ], className="banner"),
 
             html.Div([
