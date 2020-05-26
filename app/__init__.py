@@ -716,7 +716,7 @@ def register_dashapps(app):
 
         
         
-_protect_dashviews(dashapp1)
+        _protect_dashviews(dashapp1)
 def _protect_dashviews(dashapp):
     for view_func in dashapp.server.view_functions:
         if view_func.startswith(dashapp.config.url_base_pathname):
