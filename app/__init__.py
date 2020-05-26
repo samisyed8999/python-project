@@ -43,7 +43,7 @@ def register_dashapps(app):
     dashapp1.title = 'Financial Statements'
     
     with app.app_context():
-        python(dashapp1)
+        python()
 
     dashapp1.layout = html.Div([
     html.Div([
