@@ -20,10 +20,11 @@ class python:
                                     'Income (Loss) from Continuing Operations',
                                     'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
         df_income=df_income.fillna(0)
-        #df_income= df_income.apply(lambda x: x / 1000000)
+        df_income = df_income.astype('float')
+        df_income= df_income.apply(lambda x: x / 1000000)
         decimals = 0
-        #df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: x * 1000000)
-        #df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: round(x, decimals))
+        df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: x * 1000000)
+        df_income['Fiscal Year']=df_income['Fiscal Year'].apply(lambda x: round(x, decimals))
         ticker = ("AAPL")
         df_income.rename(columns={FISCAL_YEAR : 'Year', SHARES_DILUTED : 'Shares' , SGA : 'SGA' , RD : 'R&D' , DEPR_AMOR: 'D&A' , OP_INCOME : 'Operating Income' , NON_OP_INCOME : 'Non Operating Income' , INTEREST_EXP_NET :'Interest Expense' , PRETAX_INCOME_LOSS:'Pretax Income' , INCOME_TAX: 'Income Tax'}, inplace=True)
         df1 = df_income.loc[ticker].copy()
@@ -50,6 +51,7 @@ class python:
         df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
         df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
         df_balance=df_balance.fillna(0)
+        df_balance = df_balance.astype('float')
         df_balance=df_balance.apply(lambda x: x / 1000000)
         decimals = 0
         df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
