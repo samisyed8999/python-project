@@ -43,7 +43,213 @@ def register_dashapps(app):
     #html.Img(src= dashapp1.get_asset_url('stock-icon.png')) 
     dashapp1.title = 'Financial Statements'
 
-    dashapp1.layout = html.Div(['hello']) 
+    dashapp1.layout = html.Div([
+    html.Div([
+        html.H2('Fundemental Analysis'),
+        html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
+                    href = 'https://testsami999.herokuapp.com/logout/'),
+        html.Img(src= dashapp1.get_asset_url('stock-icon.png')),
+    ], className="banner"),
+
+    html.Div([
+        dcc.Dropdown(id='drop-down', options=[
+            {'label': i, 'value': i} for i in df_names
+        ], multi=False, placeholder='Enter a ticker'),
+    ], className='drops'),
+
+    dcc.Tabs(id="tabs", value='Tab2', className='custom-tabs-container', children=[
+        dcc.Tab(label='Portfolio tracker', id='tab1', value= 'Tab1', selected_className='custom-tab--selected', children=[
+
+
+
+        ]),
+        dcc.Tab(label='Financial Statements', id='tab2', value= 'Tab2', selected_className='custom-tab--selected', children=[
+            dcc.Tabs( className ='sub-tab-container', children=[
+                dcc.Tab(label='Income Statement', selected_className='sub-tab', children=[
+                    dash_table.DataTable(
+                        style_cell={
+                                'whiteSpace': 'normal',
+                                'height': 'auto',
+                            },
+                        style_table={
+                            'width': '95%',
+                            'margin': '20px 20px 0px'
+
+                        },
+                        id='table',
+                        columns=[{"name": i, "id": i} for i in df1.columns],
+                        data=df1.to_dict('records'),
+                    ),
+
+                    html.Div([
+                       dcc.Graph(id='sales', config={'displayModeBar':False}, figure=fig1, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            'display': 'inline-block',
+                            "margin-left":"20px"
+                       }),
+
+                        dcc.Graph(id='costs', config={'displayModeBar':False}, figure=fig2, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            'display': 'inline-block',
+                            #"margin-left":"-100px"
+                        }),
+
+                        dcc.Graph(id='operating', config={'displayModeBar':False}, figure=fig3, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            "display": "inline-block",
+                            #"margin-left":"-100px"
+                        }),
+
+
+                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
+                    html.Div([
+                       dcc.Graph(id='interest', config={'displayModeBar':False}, figure=fig4, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            'display': 'inline-block',
+                            "margin-left":"20px"
+
+                       }),
+
+                        dcc.Graph(id='tax', config={'displayModeBar':False}, figure=fig5, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            'display': 'inline-block'
+
+
+                        }),
+
+                        dcc.Graph(id='shares', config={'displayModeBar':False}, figure=fig6, style={
+
+                            "height": "40vh",
+                            "width": "30vw",
+                            "float": "left",
+                            'display': 'inline-block'
+
+
+                        }),
+
+
+                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
+
+
+                    # html.Div([
+                    #     html.H6('Key Ratios %')
+                    # ], className='text1'),
+
+                    dash_table.DataTable(
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
+                        },
+                        id='table2',
+                        columns=[{"name": i, "id": i} for i in df2.columns],
+                        data=df2.to_dict('records'),
+                    ),
+
+                    html.Div([
+                       dcc.Graph(id='profit-margin', config={'displayModeBar':False}, figure=fig7, style={
+
+                            "height": "40vh",
+                            "width": "31vw",
+                            "float": "left",
+                            'display': 'inline-block',
+                            "margin-left":"20px"
+                       }),
+
+                        dcc.Graph(id='SGA', config={'displayModeBar':False}, figure=fig8, style={
+
+                            "height": "40vh",
+                            "width": "31vw",
+                            "float": "left",
+                            'display': 'inline-block',
+                            "margin-left":"20px"
+                        }),
+
+                        dcc.Graph(id='R&D', config={'displayModeBar':False}, figure=fig9, style={
+
+                            "height": "40vh",
+                            "width": "30vw",
+                            "float": "left",
+                            "display": "inline-block",
+                            "margin-left":"20px"
+                        }),
+
+
+                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"20px"}),
+                    html.Div([
+                       dcc.Graph(id='operating-margin-ratio', config={'displayModeBar':False}, figure=fig10, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            'display': 'inline-block',
+                            "margin-left":"20px"
+
+                       }),
+
+                        dcc.Graph(id='interest-coverage', config={'displayModeBar':False}, figure=fig11, style={
+
+                            "height": "40vh",
+                            "width": "32vw",
+                            "float": "left",
+                            'display': 'inline-block'
+
+
+                        }),
+
+                        dcc.Graph(id='taxes-paid', config={'displayModeBar':False}, figure=fig12, style={
+
+                            "height": "40vh",
+                            "width": "30vw",
+                            "float": "left",
+                            'display': 'inline-block'
+
+
+                        }),
+
+
+                    ], style={"height" : "50vh", "width" : "98vw", "margin-top":"-20px"}),
+
+                ]),
+                dcc.Tab(label='Balance Sheet', selected_className='sub-tab', children=[
+                        dash_table.DataTable(
+                            style_cell={
+                                'whiteSpace': 'normal',
+                                'height': 'auto',
+                            },
+                            style_table={
+                            'width': '10%',
+                            'margin': '20px 20px 0px'
+                            },
+                            id='table3',
+                            columns=[{"name": i, "id": i} for i in df3.columns],
+                            data=df3.to_dict('records'),
+                        ),
+
+
+                ]),
+                dcc.Tab(label='Cash Flow statement ', selected_className='sub-tab', children=[]),
+            ])
+        ]),
+        dcc.Tab(label='Intrinsic value estimations', id='tab3', value= 'Tab3',selected_className='custom-tab--selected',  children=["yo"]),
+        dcc.Tab(label='Machine learning', id='tab4', value= 'Tab4', selected_className='custom-tab--selected',  children=["yo"]),
+
+    ])
+])
         
 
 
