@@ -14,6 +14,28 @@ sf.set_data_dir('~/simfin_data/')
 api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
 
 class python:
+        global df_income
+        global ticker
+        global df1
+        global df_names
+        global df2
+        global df11
+        global df_signals
+        global df_negative
+        global df3
+        global df_balance
+        global fig1
+        global fig2
+        global fig3
+        global fig4
+        global fig5
+        global fig6
+        global fig7
+        global fig8
+        global fig9
+        global fig10
+        global fig11
+        global fig12
         
         df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER,])
         df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
