@@ -10,7 +10,6 @@ from flask import Flask
 from flask.helpers import get_root_path
 from flask_login import login_required
 from config import BaseConfig
-from pyth import python
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
@@ -31,6 +30,7 @@ def create_app():
 
 
 def register_dashapps(app):
+    from pyth import python
     # Meta tags for viewport responsiveness
     meta_viewport = {"name": "viewport", "content": "width=device-width, initial-scale=1, shrink-to-fit=no"}
 
