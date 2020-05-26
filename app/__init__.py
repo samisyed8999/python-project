@@ -21,7 +21,7 @@ api_key="ZxGEGRnaTpxMF0pbGQ3JLThgqY2HBL17"
         
 df_income = sf.load(dataset='income', variant='annual', market='us',index=[TICKER])
 df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)',
-                            'Abnormal Gains (Losses)','Abnormal Gains (Losses)', 'Net Extraordinary Gains (Losses)',
+                            'Abnormal Gains (Losses)','Net Extraordinary Gains (Losses)',
                             'Income (Loss) from Continuing Operations',
                             'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date'], axis = 1)
 df_income=df_income.fillna(0)
