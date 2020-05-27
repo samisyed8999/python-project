@@ -26,10 +26,10 @@ class RegistrationForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')]) 
     submit = SubmitField('Register')
     
-    #def validate_username(self, username):
-    user = User.query.filter_by(username=username.data).first()
-    if user is not None:
-        raise ValidationError('Username taken.') 
+#     def validate_username(self, username):
+#         user = User.query.filter_by(username=username.data).first()
+#         if user is not None:
+#             raise ValidationError('Username taken.') 
             
 #     def validate_email(self, email):
 #         user = User.query.filter_by(email=email.data).first()
