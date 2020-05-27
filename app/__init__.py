@@ -9,6 +9,7 @@ from dash.dependencies import Output, Input, State
 from flask import Flask
 from flask.helpers import get_root_path
 from flask_login import login_required
+from flask_login import loginManager
 from config import BaseConfig
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
