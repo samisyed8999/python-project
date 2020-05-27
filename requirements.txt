@@ -50,4 +50,4 @@ Werkzeug==0.16.1
 wrapt==1.11.2
 WTForms==2.2.1
 email-validator==1.1.1
-
+psycopg2==2.8.5
