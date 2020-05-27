@@ -23,11 +23,6 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-
-#     def __init__(self, name, email, password_hash):
-#         self.name = name
-#         self.email = email
-#         self.password = password_hash 
         
     def __repr__(self):
         return '<User {}>'.format(self.username)
