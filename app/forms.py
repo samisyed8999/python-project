@@ -6,6 +6,7 @@ from wtforms import SubmitField
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
 from wtforms.validators import Email
+from wtforms.validators import Length 
 from wtforms.validators import EqualTo
 from app.models import User
 from flask_bootstrap import Bootstrap
