@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 
 from app.extensions import db
 from app.extensions import login
-
+from datetime import datetime
 
 @login.user_loader
 def load_user(id):
