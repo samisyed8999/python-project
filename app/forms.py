@@ -8,7 +8,7 @@ from wtforms.validators import ValidationError
 from wtforms.validators import Email
 from wtforms.validators import EqualTo
 from app.models import User
-
+from flask_bootstrap import Bootstrap
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
