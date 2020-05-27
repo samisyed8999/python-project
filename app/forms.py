@@ -17,10 +17,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
     remember_me = BooleanField('Remember Me')
     
-    def validate_password(self, password):
-        user = User.query.filter_by(password=password.data).first()
-        if user is None:
-            raise ValidationError('Username or password incorrect.')
+
 
 
 class RegistrationForm(FlaskForm):
