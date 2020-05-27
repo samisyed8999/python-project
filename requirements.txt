@@ -49,4 +49,5 @@ urllib3==1.25.9
 Werkzeug==0.16.1
 wrapt==1.11.2
 WTForms==2.2.1
+email-validator==1.1.1
 
