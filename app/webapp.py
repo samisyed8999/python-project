@@ -12,7 +12,7 @@ from werkzeug.urls import url_parse
 from app.extensions import db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
-from app.models import User, Post
+from app.models import User
 
 server_bp = Blueprint('main', __name__)
 
