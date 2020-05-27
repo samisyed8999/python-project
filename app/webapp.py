@@ -8,6 +8,7 @@ from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
 from werkzeug.urls import url_parse
+from flask_bootstrap import Bootstrap
 
 from app.extensions import db
 from app.forms import LoginForm
