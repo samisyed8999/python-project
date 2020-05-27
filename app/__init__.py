@@ -735,8 +735,10 @@ def register_extensions(server):
     from app.extensions import db
     from app.extensions import login
     from app.extensions import migrate
+    from app.extensions import bootstrap
 
     db.init_app(server)
+    bootstrap.init_app(server)
     login.init_app(server)
     login.login_view = 'main.login'
     migrate.init_app(server, db)
