@@ -63,8 +63,8 @@ def register():
 
     form = RegistrationForm()
     if form.validate_on_submit():
-        #user = User(username=form.username.data, email=form.email.data)
-        user = User(username=form.username.data)
+        user = User(username=form.username.data, email=form.email.data)
+        #user = User(username=form.username.data)
         #user = User(username=form.username.data, email=form.email.data, password=form.password.data)
         #user.set_email(form.email.data)
         user.set_password(form.password.data)
