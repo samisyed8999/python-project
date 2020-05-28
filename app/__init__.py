@@ -35,12 +35,6 @@ def register_dashapps(app):
                                     'Income (Loss) from Continuing Operations',
                                     'Net Income (Common)','Pretax Income (Loss), Adj.','Report Date', 'Restated Date'], axis = 1)
         df_income=df_income.fillna(0)
-        # df_income[['Shares (Diluted)','Revenue','Cost of Revenue','Gross Profit','Operating Expenses',
-        #            'Selling, General & Administrative','Research & Development','Operating Income (Loss)',
-        #            'Non-Operating Income (Loss)','Pretax Income (Loss)','Income Tax (Expense) Benefit, Net','Net Income','Interest Expense, Net', 'Depreciation & Amortization']]= df_income[['Shares (Diluted)','Revenue','Cost of Revenue','Gross Profit','Operating Expenses',
-        #              'Selling, General & Administrative','Research & Development','Operating Income (Loss)',
-        #              'Non-Operating Income (Loss)','Pretax Income (Loss)','Income Tax (Expense) Benefit, Net',
-        #              'Net Income','Interest Expense, Net', 'Depreciation & Amortization']].apply(lambda x: x / 1000000)
 
         df_income=df_income.apply(lambda x: x / 1000000)
         decimals = 0
@@ -70,13 +64,12 @@ def register_dashapps(app):
 
 
         df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
-        df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date'], axis = 1)
-        #df_balance=df_balance.fillna(0)
-        #df_balance = df_balance.astype('float')
-        #df_balance=df_balance.apply(lambda x: x / 1000000)
-        #decimals = 0
-        #df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
-        #df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
+        df_balance = df_balance.drop(['Currency', 'SimFinId', 'Fiscal Period','Publish Date', 'Shares (Basic)','Report Date', 'Restated Date'], axis = 1)
+        df_balance=df_balance.fillna(0)
+        df_balance=df_balance.apply(lambda x: x / 1000000)
+        decimals = 0
+        df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
+        df_balance['Fiscal Year']=df_balance['Fiscal Year'].apply(lambda x: round(x, decimals))
         df3 = df_balance.loc[ticker]
 
         fig1=make_subplots(specs=[[{"secondary_y": True}]])
