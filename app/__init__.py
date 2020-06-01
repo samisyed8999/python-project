@@ -35,7 +35,7 @@ def register_dashapps(app):
     df_income = df_income.drop(['Currency', 'SimFinId', 'Fiscal Period', 'Publish Date', 'Shares (Basic)',
                                 'Abnormal Gains (Losses)', 'Net Extraordinary Gains (Losses)',
                                 'Income (Loss) from Continuing Operations',
-                                'Net Income (Common)', 'Pretax Income (Loss), Adj.', 'Report Date'], axis=1)
+                                'Net Income (Common)', 'Pretax Income (Loss), Adj.', 'Report Date', 'Restated Date'], axis=1)
     df_income = df_income.fillna(0)
     df_income = df_income.apply(lambda x: x / 1000000)
     decimals = 0
@@ -115,7 +115,7 @@ def register_dashapps(app):
     df_balance = sf.load_balance(variant='annual', market='us', index=[TICKER])
     df_balance = df_balance.drop(
         ['Currency', 'SimFinId', 'Fiscal Period', 'Publish Date', 'Shares (Basic)', 'Report Date',
-         'Shares (Diluted)', 'Total Liabilities & Equity'], axis=1)
+         'Shares (Diluted)', 'Total Liabilities & Equity', 'Restated Date'], axis=1)
     df_balance = df_balance.fillna(0)
     df_balance = df_balance.apply(lambda x: x / 1000000)
     df_balance['Fiscal Year'] = df_balance['Fiscal Year'].apply(lambda x: x * 1000000)
