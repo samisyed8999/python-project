@@ -21,14 +21,14 @@ server_bp = Blueprint('main', __name__)
 @server_bp.route('/')
 def index():
     #return render_template("index.html", title='Home Page')
-    return redirect('https://financialstatement.herokuapp.com/login/')
+    return redirect('https://financial8999.herokuapp.com/login/')
 
 
 @server_bp.route('/login/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         #return redirect(url_for('main.index'))
-        return redirect('https://financialstatement.herokuapp.com/dashboard/')
+        return redirect('https://financial8999.herokuapp.com/dashboard/')
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -42,7 +42,7 @@ def login():
         #if not next_page or url_parse(next_page).netloc != '':
             #next_page = url_for('main.index')
         #return redirect(next_page)
-        return redirect('https://financialstatement.herokuapp.com/dashboard/')
+        return redirect('https://financial8999.herokuapp.com/dashboard/')
 
     return render_template('login.html', title='Sign In', form=form)
 
@@ -53,7 +53,7 @@ def logout():
     logout_user()
 
     #return redirect(url_for('main.index'))
-    return redirect ('https://financialstatement.herokuapp.com/login/')
+    return redirect ('https://financial8999.herokuapp.com/login/')
 
 
 @server_bp.route('/register/', methods=['GET', 'POST'])
