@@ -128,7 +128,7 @@ def register_dashapps(app):
                                TOTAL_NONCUR_LIAB: 'Noncurrent Liabilities', SHARE_CAPITAL_ADD: 'C&APIC Stock',
                                ST_DEBT: 'ShortTerm debts', LT_DEBT: 'LongTerm Debts',
                                INVENTORIES: 'Inventory & Stock'}, inplace=True)
-
+    ticker = 'AAPL'
     df3 = df_balance.loc[ticker]
 
     # balance signals
