@@ -28,6 +28,7 @@ position: relative;
     top: 20px !important;
 }
 
+
 .ticker2 {
     background-color: rgb(255,255,255);
 }
@@ -110,10 +111,15 @@ padding: 0px 25px !important;
 
 .text1 {
 
-margin: 20px 20px 0px;
-
+margin: -40px 0px -90px;
+text-align: center;
 }
 
+.text2 {
+
+margin: -40px 0px 0px;
+text-align: center;
+}
 
 .drops {
 
@@ -123,9 +129,102 @@ margin: -90px 10px 50px;
 }
 
 
+.modal {
+    position: fixed;
+    z-index: 1002; /* Sit on top, including modebar which has z=1001 */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
 
+.modal-content {
+    z-index: 1004; /* Sit on top, including modebar which has z=1001 */
+    position: fixed;
+    left: 0;
+    width: 60%;
+    background-color: rgb(66, 196, 247);  /* #3949ab Material indigo 600 also margin top was originally 2% from 40% */
+    color: black; /* black */
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 0.75em;
+}
 
+.modal-content > div {
+    text-align: left;
+    margin: 15px;
+}
 
+/*.modal-content.bottom {
+    bottom: 0;
+}
+
+.modal-content.top {
+    top: 0;
+}*/
+
+.info-icon {
+  /*float: right;*/
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.2rem;
+  margin-top: -3.3rem;
+  margin-right: -27.0rem;
+  margin-bottom: 10.2rem;
+  margin-left: 0.2rem;
+    /*margin: 0.2rem;*/
+}
+
+.info-icon2 {
+  float: right;
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.2rem;
+  margin-top: 0.2rem;
+  margin-right: 0.2rem;
+  margin-bottom: 0.2rem;
+  margin-left: 0.2rem;
+    /*margin: 0.2rem;*/
+}
+
+.info-icon3 {
+  /*float: right;*/
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.2rem;
+  margin-top: -3.3rem;
+  margin-right: -15.0rem;
+  margin-bottom: 10.2rem;
+  margin-left: 0.2rem;
+    /*margin: 0.2rem;*/
+}
+
+.info-icon4 {
+  /*float: right;*/
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.2rem;
+  margin-top: -3.3rem;
+  margin-right: -25.0rem;
+  margin-bottom: 10.2rem;
+  margin-left: 0.2rem;
+    /*margin: 0.2rem;*/
+}
+
+.annual-income {
+    height: 5px;
+    /*margin: 0px 0px 40px;*/
+    margin-bottom: 40px;
+    border-radius: 0px;
+    text-align: center;
+    width: 30%;
+    margin-left: 35%;
+    margin-top: -30px;
+
+}
 
 
 /* Table of contents
@@ -522,12 +621,6 @@ hr {
   clear: both; }
 
 
-
-
-
-
-
-
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
@@ -552,3 +645,4 @@ there.
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+
