@@ -410,374 +410,374 @@ def register_dashapps(app):
 ])
 
 
-# callback
-@dashapp1.callback(Output('tabs-content', 'children'),
-                   [Input('sub-tabs', 'value')])
-def render_content(tab):
-    if tab == 'tab-1':
-        return html.Div([
-            html.Div([
-                html.H6('Annual Income Statement'),
-                html.Img(
-                    id='instructions-button',
-                    src= dashapp1.get_asset_url('question-circle-solid.svg'),
-                    # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
-                    n_clicks=0,
-                    className='info-icon',
-                ),
-            ], className='annual-income'),
-            html.Div([
-                dash_table.DataTable(
-                    style_cell={
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                    },
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 0px'
+    # callback
+    @dashapp1.callback(Output('tabs-content', 'children'),
+                       [Input('sub-tabs', 'value')])
+    def render_content(tab):
+        if tab == 'tab-1':
+            return html.Div([
+                html.Div([
+                    html.H6('Annual Income Statement'),
+                    html.Img(
+                        id='instructions-button',
+                        src= dashapp1.get_asset_url('question-circle-solid.svg'),
+                        # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
+                        n_clicks=0,
+                        className='info-icon',
+                    ),
+                ], className='annual-income'),
+                html.Div([
+                    dash_table.DataTable(
+                        style_cell={
+                            'whiteSpace': 'normal',
+                            'height': 'auto',
+                        },
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
 
-                    },
-                    id='table',
-                    columns=[{"name": i, "id": i} for i in df_income.columns]
-                )
+                        },
+                        id='table',
+                        columns=[{"name": i, "id": i} for i in df_income.columns]
+                    )
+                ]),
+                html.Div([
+                    dcc.Graph(id='sales', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+                    }),
+
+                    dcc.Graph(id='costs', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        # "margin-left":"-100px"
+                    }),
+
+                    dcc.Graph(id='operating', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        "display": "inline-block",
+                        # "margin-left":"-100px"
+                    }),
+
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
+                html.Div([
+                    dcc.Graph(id='interest', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+
+                    }),
+
+                    dcc.Graph(id='tax', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block'
+
+                    }),
+
+                    dcc.Graph(id='shares', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "30vw",
+                        "float": "left",
+                        'display': 'inline-block'
+
+                    }),
+
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "-20px"}),
+                html.Div([
+                    html.H6('Key Ratios %'),
+                    html.Img(
+                        id='instructions-button2',
+                        src= dashapp1.get_asset_url('question-circle-solid.svg'),
+                        # html.Img(src=dashapp1.get_asset_url('stock-icon.png'))
+                        n_clicks=0,
+                        className='info-icon3',
+                    ),
+                ], className='text1'),
+                html.Div([
+                    dash_table.DataTable(
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
+                        },
+                        id='table2',
+                        columns=[{"name": i, "id": i} for i in df2_original.columns]
+                    )
+                ]),
+                html.Div([
+                    dcc.Graph(id='profit-margin', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "31vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+                    }),
+
+                    dcc.Graph(id='SGA', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "31vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+                    }),
+
+                    dcc.Graph(id='R&D', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "30vw",
+                        "float": "left",
+                        "display": "inline-block",
+                        "margin-left": "20px"
+                    }),
+
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
+                html.Div([
+                    dcc.Graph(id='operating-margin-ratio', config={'displayModeBar': False},
+                              style={
+
+                                  "height": "40vh",
+                                  "width": "32vw",
+                                  "float": "left",
+                                  'display': 'inline-block',
+                                  "margin-left": "20px"
+
+                              }),
+
+                    dcc.Graph(id='interest-coverage', config={'displayModeBar': False},
+                              style={
+
+                                  "height": "40vh",
+                                  "width": "32vw",
+                                  "float": "left",
+                                  'display': 'inline-block'
+
+                              }),
+
+                    dcc.Graph(id='taxes-paid', config={'displayModeBar': False}, style={
+
+                        "height": "40vh",
+                        "width": "30vw",
+                        "float": "left",
+                        'display': 'inline-block'
+
+                    }),
+
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "-20px"}),
+                html.Div([
+                    html.H6('Growth Signals')
+                ], className='text2'),
+                html.Div([
+                    dash_table.DataTable(
+                        # style_cell={
+                        #     'whiteSpace': 'normal',
+                        #     'height': 'auto',
+                        # },
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 20px'
+
+                        },
+                        id='income_compound_table',
+                        columns=[{"name": i, "id": i} for i in df_income_compound_original.columns],
+                    )
+                ]),
+                html.Div([
+                    dash_table.DataTable(
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
+                        },
+                        id='table_growth',
+                        columns=[{"name": i, "id": i} for i in df1_growth.columns]
+                    )
+                ]),
             ]),
-            html.Div([
-                dcc.Graph(id='sales', config={'displayModeBar': False}, style={
 
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
-                }),
+        elif tab == 'tab-2':
+            return html.Div([
+                html.Div([
+                    html.H6('Annual Balance Sheets'),
+                    html.Img(
+                        id='instructions-button3',
+                        src= dashapp1.get_asset_url('question-circle-solid.svg'),
+                        # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
+                        n_clicks=0,
+                        className='info-icon4',
+                    ),
+                ], className='annual-income'),
+                html.Div([
+                    dash_table.DataTable(
+                        style_cell={
+                            'whiteSpace': 'normal',
+                            'height': 'auto',
+                        },
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
+                        },
+                        id='table3',
+                        columns=[{"name": i, "id": i} for i in df3_original.columns],
+                    ),
+                ]),
+                html.Div([
+                    dcc.Graph(id='balance', config={'displayModeBar': False}, style={
 
-                dcc.Graph(id='costs', config={'displayModeBar': False}, style={
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+                    }),
 
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    # "margin-left":"-100px"
-                }),
+                    dcc.Graph(id='liquidity', config={'displayModeBar': False}, style={
 
-                dcc.Graph(id='operating', config={'displayModeBar': False}, style={
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        # "margin-left":"-100px"
+                    }),
 
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    "display": "inline-block",
-                    # "margin-left":"-100px"
-                }),
+                    dcc.Graph(id='long-term-assets', config={'displayModeBar': False}, style={
 
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
-            html.Div([
-                dcc.Graph(id='interest', config={'displayModeBar': False}, style={
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        "display": "inline-block",
+                        # "margin-left":"-100px"
+                    }),
 
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
+                html.Div([
+                    dcc.Graph(id='current debts', config={'displayModeBar': False}, style={
 
-                }),
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+                    }),
 
-                dcc.Graph(id='tax', config={'displayModeBar': False}, style={
+                    dcc.Graph(id='non-current-debts', config={'displayModeBar': False},
+                              style={
 
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block'
+                                  "height": "40vh",
+                                  "width": "32vw",
+                                  "float": "left",
+                                  'display': 'inline-block',
+                                  # "margin-left":"-100px"
+                              }),
 
-                }),
+                    dcc.Graph(id='retained-earnings', config={'displayModeBar': False},
+                              style={
 
-                dcc.Graph(id='shares', config={'displayModeBar': False}, style={
+                                  "height": "40vh",
+                                  "width": "30vw",
+                                  "float": "left",
+                                  "display": "inline-block",
+                                  # "margin-left":"-100px"
+                              }),
 
-                    "height": "40vh",
-                    "width": "30vw",
-                    "float": "left",
-                    'display': 'inline-block'
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "-20px"}),
+                html.Div([
+                    html.H6('Balance Signals')
+                ], className='text2'),
+                html.Div([
+                    dash_table.DataTable(
+                        style_cell={
+                            'whiteSpace': 'normal',
+                            'height': 'auto',
+                        },
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
+                        },
+                        id='table4',
+                        columns=[{"name": i, "id": i} for i in df4_original.columns],
+                        # data=df4.to_dict('records'),
+                    )
+                ]),
+                html.Div([
+                    dcc.Graph(id='equity_returns', config={'displayModeBar': False}, style={
 
-                }),
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        "margin-left": "20px"
+                    }),
 
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "-20px"}),
-            html.Div([
-                html.H6('Key Ratios %'),
-                html.Img(
-                    id='instructions-button2',
-                    src= dashapp1.get_asset_url('question-circle-solid.svg'),
-                    # html.Img(src=dashapp1.get_asset_url('stock-icon.png'))
-                    n_clicks=0,
-                    className='info-icon3',
-                ),
-            ], className='text1'),
-            html.Div([
-                dash_table.DataTable(
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 0px'
-                    },
-                    id='table2',
-                    columns=[{"name": i, "id": i} for i in df2_original.columns]
-                )
-            ]),
-            html.Div([
-                dcc.Graph(id='profit-margin', config={'displayModeBar': False}, style={
+                    dcc.Graph(id='retained_equity', config={'displayModeBar': False}, style={
 
-                    "height": "40vh",
-                    "width": "31vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
-                }),
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        'display': 'inline-block',
+                        # "margin-left":"-100px"
+                    }),
 
-                dcc.Graph(id='SGA', config={'displayModeBar': False}, style={
+                    dcc.Graph(id='assets_return', config={'displayModeBar': False}, style={
 
-                    "height": "40vh",
-                    "width": "31vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
-                }),
+                        "height": "40vh",
+                        "width": "32vw",
+                        "float": "left",
+                        "display": "inline-block",
+                        # "margin-left":"-100px"
+                    }),
 
-                dcc.Graph(id='R&D', config={'displayModeBar': False}, style={
+                ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
+                html.Div([
+                    html.H6('Growth Signals')
+                ], className='text2'),
+                html.Div([
+                    dash_table.DataTable(
+                        # style_cell={
+                        #     'whiteSpace': 'normal',
+                        #     'height': 'auto',
+                        # },
+                        style_table={
+                            'width': '95%',
+                            'margin': '0px 20px 0px'
 
-                    "height": "40vh",
-                    "width": "30vw",
-                    "float": "left",
-                    "display": "inline-block",
-                    "margin-left": "20px"
-                }),
-
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
-            html.Div([
-                dcc.Graph(id='operating-margin-ratio', config={'displayModeBar': False},
-                          style={
-
-                              "height": "40vh",
-                              "width": "32vw",
-                              "float": "left",
-                              'display': 'inline-block',
-                              "margin-left": "20px"
-
-                          }),
-
-                dcc.Graph(id='interest-coverage', config={'displayModeBar': False},
-                          style={
-
-                              "height": "40vh",
-                              "width": "32vw",
-                              "float": "left",
-                              'display': 'inline-block'
-
-                          }),
-
-                dcc.Graph(id='taxes-paid', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "30vw",
-                    "float": "left",
-                    'display': 'inline-block'
-
-                }),
-
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "-20px"}),
-            html.Div([
-                html.H6('Growth Signals')
-            ], className='text2'),
-            html.Div([
-                dash_table.DataTable(
-                    # style_cell={
-                    #     'whiteSpace': 'normal',
-                    #     'height': 'auto',
-                    # },
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 20px'
-
-                    },
-                    id='income_compound_table',
-                    columns=[{"name": i, "id": i} for i in df_income_compound_original.columns],
-                )
-            ]),
-            html.Div([
-                dash_table.DataTable(
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 0px'
-                    },
-                    id='table_growth',
-                    columns=[{"name": i, "id": i} for i in df1_growth.columns]
-                )
-            ]),
-        ]),
-
-    elif tab == 'tab-2':
-        return html.Div([
-            html.Div([
-                html.H6('Annual Balance Sheets'),
-                html.Img(
-                    id='instructions-button3',
-                    src= dashapp1.get_asset_url('question-circle-solid.svg'),
-                    # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
-                    n_clicks=0,
-                    className='info-icon4',
-                ),
-            ], className='annual-income'),
-            html.Div([
-                dash_table.DataTable(
-                    style_cell={
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                    },
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 0px'
-                    },
-                    id='table3',
-                    columns=[{"name": i, "id": i} for i in df3_original.columns],
-                ),
-            ]),
-            html.Div([
-                dcc.Graph(id='balance', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
-                }),
-
-                dcc.Graph(id='liquidity', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    # "margin-left":"-100px"
-                }),
-
-                dcc.Graph(id='long-term-assets', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    "display": "inline-block",
-                    # "margin-left":"-100px"
-                }),
-
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
-            html.Div([
-                dcc.Graph(id='current debts', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
-                }),
-
-                dcc.Graph(id='non-current-debts', config={'displayModeBar': False},
-                          style={
-
-                              "height": "40vh",
-                              "width": "32vw",
-                              "float": "left",
-                              'display': 'inline-block',
-                              # "margin-left":"-100px"
-                          }),
-
-                dcc.Graph(id='retained-earnings', config={'displayModeBar': False},
-                          style={
-
-                              "height": "40vh",
-                              "width": "30vw",
-                              "float": "left",
-                              "display": "inline-block",
-                              # "margin-left":"-100px"
-                          }),
-
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "-20px"}),
-            html.Div([
-                html.H6('Balance Signals')
-            ], className='text2'),
-            html.Div([
-                dash_table.DataTable(
-                    style_cell={
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                    },
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 0px'
-                    },
-                    id='table4',
-                    columns=[{"name": i, "id": i} for i in df4_original.columns],
-                    # data=df4.to_dict('records'),
-                )
-            ]),
-            html.Div([
-                dcc.Graph(id='equity_returns', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    "margin-left": "20px"
-                }),
-
-                dcc.Graph(id='retained_equity', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    'display': 'inline-block',
-                    # "margin-left":"-100px"
-                }),
-
-                dcc.Graph(id='assets_return', config={'displayModeBar': False}, style={
-
-                    "height": "40vh",
-                    "width": "32vw",
-                    "float": "left",
-                    "display": "inline-block",
-                    # "margin-left":"-100px"
-                }),
-
-            ], style={"height": "50vh", "width": "98vw", "margin-top": "20px"}),
-            html.Div([
-                html.H6('Growth Signals')
-            ], className='text2'),
-            html.Div([
-                dash_table.DataTable(
-                    # style_cell={
-                    #     'whiteSpace': 'normal',
-                    #     'height': 'auto',
-                    # },
-                    style_table={
-                        'width': '95%',
-                        'margin': '0px 20px 0px'
-
-                    },
-                    id='balance_compound_growth',
-                    columns=[{"name": i, "id": i} for i in df_balance_compound_original.columns]
-                )
-            ]),
-            html.Div([
-                dash_table.DataTable(
-                    style_cell={
-                        'whiteSpace': 'normal',
-                        'height': 'auto',
-                    },
-                    style_table={
-                        'width': '95%',
-                        'margin': '20px 20px 0px'
-                    },
-                    id='balance_growth',
-                    columns=[{"name": i, "id": i} for i in balance_growth.columns],
-                    # data=df4.to_dict('records'),
-                )
+                        },
+                        id='balance_compound_growth',
+                        columns=[{"name": i, "id": i} for i in df_balance_compound_original.columns]
+                    )
+                ]),
+                html.Div([
+                    dash_table.DataTable(
+                        style_cell={
+                            'whiteSpace': 'normal',
+                            'height': 'auto',
+                        },
+                        style_table={
+                            'width': '95%',
+                            'margin': '20px 20px 0px'
+                        },
+                        id='balance_growth',
+                        columns=[{"name": i, "id": i} for i in balance_growth.columns],
+                        # data=df4.to_dict('records'),
+                    )
+                ])
             ])
-        ])
 
 
     @dashapp1.callback(
