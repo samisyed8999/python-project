@@ -6,7 +6,7 @@
       "Dash",
       "Plotly"
     ],
-    "repository": "https://github.com/samisyed8999/test",
+    "repository": "https://github.com/samisyed8999/python-project",
     "success_url": "/",
     "env": {
       "SECRET_KEY": {
