@@ -15,6 +15,8 @@ from plotly.subplots import make_subplots
 import numpy as np
 from flask_migrate import Migrate
 from textwrap import dedent
+from flask_login import current_user
+
 
 def create_app():
     server = Flask(__name__)
