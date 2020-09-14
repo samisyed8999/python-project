@@ -15,8 +15,6 @@ from plotly.subplots import make_subplots
 import numpy as np
 from flask_migrate import Migrate
 from textwrap import dedent
-from flask_login import current_user
-
 
 def create_app():
     server = Flask(__name__)
@@ -183,7 +181,7 @@ def register_dashapps(app):
     dashapp1.config['suppress_callback_exceptions'] = True
     dashapp1.layout = html.Div([
     html.Div([
-        html.H2('Hi', {{ current_user.username }}),  
+        html.H2('Fundemental Analysis'),  
         html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
                href='https://financial8999.herokuapp.com/logout/'),
         html.Img(src= dashapp1.get_asset_url('stock-icon.png')),
