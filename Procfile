@@ -1,2 +1,2 @@
-web:gunicorn dashapp:server
+web: gunicorn dashapp:server
 release:flask db upgrade
