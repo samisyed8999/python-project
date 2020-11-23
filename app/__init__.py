@@ -346,7 +346,7 @@ def register_dashapps(app):
                 html.Div([  # content div
                     html.Img(
                         id='modal-close-button',
-                        src= dashapp1.get_asset_url('times-circle-solid.svg'),   
+                        src= dashapp1.get_asset_url('times-circle-solid.svg'),
                         # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon2',
@@ -399,7 +399,7 @@ def register_dashapps(app):
                 html.Div([  # content div
                     html.Img(
                         id='modal-close-button2',
-                        src=dashapp1.get_asset_url('times-circle-solid.svg'),
+                        src= dashapp1.get_asset_url('times-circle-solid.svg'),
                         # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon2',
@@ -452,7 +452,7 @@ def register_dashapps(app):
                 html.Div([  # content div
                     html.Img(
                         id='modal-close-button3',
-                        src=dashapp1.get_asset_url('times-circle-solid.svg'),
+                         src= dashapp1.get_asset_url('times-circle-solid.svg'),
                         # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon2',
@@ -544,7 +544,7 @@ def register_dashapps(app):
                 html.Div([  # content div
                     html.Img(
                         id='modal-close-button4',
-                        src=dashapp1.get_asset_url('times-circle-solid.svg'),
+                         src= dashapp1.get_asset_url('times-circle-solid.svg'),
                         # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon2',
