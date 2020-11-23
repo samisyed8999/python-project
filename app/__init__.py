@@ -324,7 +324,7 @@ clustersignals = clustersignals.drop(['Ticker'], axis=1)
             html.H2('Fundamental Analysis'),
             html.A(html.Button(id="logout-button", n_clicks=0, children="Log Out", className="logout2"),
                    href='https://financial8999.herokuapp.com/logout/'),
-            html.Img(src="/assets/stock-icon.png"),
+            html.Img(src= dashapp1.get_asset_url('stock-icon.png')),
             # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
         ], className="banner"),
         html.Div([
