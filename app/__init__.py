@@ -1,20 +1,33 @@
 import dash
-import dash_html_components as html
 import dash_core_components as dcc
-import pandas as pd
-import simfin as sf
-from simfin.names import *
+import dash_html_components as html
 import dash_table
-from dash.dependencies import Output, Input, State
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+import simfin as sf
+from dash.dependencies import Output, Input
+from plotly.subplots import make_subplots
+from simfin.names import *
+from textwrap import dedent
+import dash_daq as daq
+import yfinance as yf
+import datetime
+import pandas_datareader as pdr
+from dateutil.relativedelta import relativedelta
+import plotly.express as px
+from scipy.stats import pearsonr
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import RobustScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn import metrics
 from flask import Flask
 from flask.helpers import get_root_path
 from flask_login import login_required
 from config import BaseConfig
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import numpy as np
 from flask_migrate import Migrate
-from textwrap import dedent
 
 def create_app():
     server = Flask(__name__)
