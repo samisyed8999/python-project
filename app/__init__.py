@@ -1015,8 +1015,8 @@ def register_dashapps(app):
                     html.H6('Annual Income statement'),
                     html.Img(
                         id='instructions-button',
-                        src="/assets/question-circle-solid.svg",
-                        # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
+                        src=dashapp1.get_asset_url('question-circle-solid.svg'),
+                        # html.Img(src= dashapp1.get_asset_url('question-circle-solid.svg'))
                         n_clicks=0,
                         className='info-icon',
                     ),
@@ -1099,7 +1099,7 @@ def register_dashapps(app):
                     html.H6('Key Ratios %'),
                     html.Img(
                         id='instructions-button2',
-                        src="/assets/question-circle-solid.svg",
+                        src=dashapp1.get_asset_url('question-circle-solid.svg'),
                         # html.Img(src=dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon3',
@@ -1212,7 +1212,7 @@ def register_dashapps(app):
                     html.H6('Annual Balance Sheets'),
                     html.Img(
                         id='instructions-button3',
-                        src="/assets/question-circle-solid.svg",
+                        src=dashapp1.get_asset_url('question-circle-solid.svg'),
                         # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon4',
@@ -1380,7 +1380,7 @@ def register_dashapps(app):
                     html.H6('Annual Cash Flow, statement'),
                     html.Img(
                         id='instructions-button4',
-                        src="/assets/question-circle-solid.svg",
+                        src=dashapp1.get_asset_url('question-circle-solid.svg'),
                         # html.Img(src= dashapp1.get_asset_url('stock-icon.png'))
                         n_clicks=0,
                         className='info-icon5',
