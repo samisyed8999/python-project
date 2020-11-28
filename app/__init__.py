@@ -2077,7 +2077,7 @@ def register_dashapps(app):
                           safety_value):
         try:
             present_book = neteq_value / shares_value
-            growth_rate = ((bvgro_value / 100) + 1) ** period_value
+            growth_rate = ((bvgro_value / 100) + 1) * period_value
             discount_rate = ((discount_value / 100) + 1) ** period_value
 
             first_equation = (1 - (1 / discount_rate)) * dividend_value
