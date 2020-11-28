@@ -2273,6 +2273,7 @@ def register_dashapps(app):
     def update_data(input_value):
         try:
             df1 = df_income.loc[input_value]
+            df1 = df1.fillna(0)
             data = df1.to_dict("records")
             return data
         except TypeError:
@@ -2404,6 +2405,7 @@ def register_dashapps(app):
     def update_data(input_value):
         try:
             df2 = df_signals.loc[input_value]
+            df2 = df2.fillna(0)
             data = df2.to_dict("records")
             return data
         except TypeError:
